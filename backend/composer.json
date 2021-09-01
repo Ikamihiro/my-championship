@@ -1,0 +1,24 @@
+{
+    "name": "ikamihiro/frankenstein-framework",
+    "type": "project",
+    "description": "Miniframework for study purposes",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "João G. Silva",
+            "email": "joogabrielsntn66@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "require": {
+        "vlucas/phpdotenv": "^5.3",
+        "illuminate/database": "^8.52",
+        "nesbot/carbon": "^2.51",
+        "ikamihiro/frankenstein-core": "^1.0"
+    }
+}
