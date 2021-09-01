@@ -12,22 +12,10 @@ class User extends Model
     protected $table = 'users';
 
     protected $fillable = [
-        'first_name',
-        'last_name',
+        'name',
         'email',
-        'phone',
         'document',
-        'birth_date',
-    ];
-
-    protected $casts = [
-        'birth_date' => 'datetime'
     ];
 
     protected $dates = ['deleted_at'];
-
-    public function addresses()
-    {
-        return $this->hasMany(Address::class, 'user_id');
-    }
 }
