@@ -54,4 +54,9 @@ class Request
     {
         return getallheaders();
     }
+
+    public function getHeader(string $headerName)
+    {
+        return $this->getHeaders()[$headerName];
+    }
 }
