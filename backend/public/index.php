@@ -11,7 +11,7 @@ require __DIR__ . '/../config/database.php';
 
 use App\Controllers\HomeController;
 use App\Controllers\Api\{AddressController, UserController};
-use Frankenstein\Application;
+use Lib\Application;
 
 $app = new Application();
 

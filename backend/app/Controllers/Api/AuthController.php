@@ -3,11 +3,10 @@
 namespace App\Controllers\Api;
 
 use App\Forms\User\CreateUserForm;
-use App\Forms\User\UpdateUserForm;
 use App\Models\User;
-use Frankenstein\Http\Controller;
-use Frankenstein\Http\Request;
-use Frankenstein\Http\Response;
+use Lib\Http\Controller;
+use Lib\Http\Request;
+use Lib\Http\Response;
 
 class AuthController extends Controller
 {

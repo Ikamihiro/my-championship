@@ -2,8 +2,8 @@
 
 namespace App\Forms\User;
 
-use Frankenstein\Validation\Form;
-use Frankenstein\Validation\Rules\RequiredRule;
+use Lib\Validation\Form;
+use Lib\Validation\Rules\RequiredRule;
 
 class UpdateUserForm extends Form
 {

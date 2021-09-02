@@ -2,9 +2,9 @@
 
 namespace App\Controllers;
 
-use Frankenstein\Http\Controller;
-use Frankenstein\Http\Request;
-use Frankenstein\Http\Response;
+use Lib\Http\Controller;
+use Lib\Http\Request;
+use Lib\Http\Response;
 
 class HomeController extends Controller
 {
