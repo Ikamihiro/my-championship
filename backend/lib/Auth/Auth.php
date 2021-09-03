@@ -3,6 +3,7 @@
 namespace Lib\Auth;
 
 use App\Models\User;
+use Exception;
 use Firebase\JWT\JWT;
 
 class Auth
@@ -14,7 +15,7 @@ class Auth
     public function __construct(string $key)
     {
         $this->key = $key;
-        $this->algoritm = 'sha256';
+        $this->algoritm = 'HS256';
     }
 
     public static function getInstance()
@@ -40,18 +41,19 @@ class Auth
     {
         $instance = self::getInstance();
 
-        $passwordHash = password_hash($password, PASSWORD_BCRYPT);
-
         $user = User::where([
             'email' => $email,
-            'password' => $passwordHash,
         ])->firstOrFail();
+
+        if (!password_verify($password, $user->password)) {
+            throw new Exception("Password is not right");
+        }
 
         $payload = [
             'user' => $user,
         ];
 
-        return JWTToken::encode($payload, $instance->getKey());
+        return JWTToken::encode($payload, $instance->getKey(), $instance->getAlgorithm());
     }
 
     public static function validate(string $jwtToken)

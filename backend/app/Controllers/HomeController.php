@@ -14,4 +14,11 @@ class HomeController extends Controller
             'data' => 'Hello World!',
         ]);
     }
+
+    public function hello(Request $request, Response $response, string $name)
+    {
+        return $response->json([
+            'data' => "Hello, $name!",
+        ]);
+    }
 }
