@@ -5,6 +5,7 @@ namespace Lib\Auth;
 use App\Models\User;
 use Exception;
 use Firebase\JWT\JWT;
+use Lib\Exceptions\IncorretPasswordException;
 
 class Auth
 {
@@ -46,7 +47,7 @@ class Auth
         ])->firstOrFail();
 
         if (!password_verify($password, $user->password)) {
-            throw new Exception("Password is not right");
+            throw new IncorretPasswordException("Password is not right");
         }
 
         $payload = [

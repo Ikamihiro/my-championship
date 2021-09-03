@@ -3,6 +3,7 @@
 namespace Lib;
 
 use Lib\Exceptions\AuthorizationException;
+use Lib\Exceptions\IncorretPasswordException;
 use Lib\Http\Controller;
 use Lib\Http\Request;
 use Lib\Http\Response;
@@ -55,6 +56,12 @@ class Application
             }
 
             echo call_user_func($callback, $this->request, $this->response, ...$this->router->getParams());
+        } catch (IncorretPasswordException $th) {
+            echo $this->response->json([
+                'exception' => get_class($th),
+                'error' => $th->getMessage(),
+            ], 403);
+            die();
         } catch (AuthorizationException $th) {
             echo $this->response->json([
                 'exception' => get_class($th),
