@@ -5,9 +5,10 @@ if (!file_exists(__DIR__ . '/../vendor/autoload.php')) {
     exit(1);
 }
 
-require __DIR__ . '/../vendor/autoload.php';
-require __DIR__ . '/../config/env.php';
-require __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../config/env.php';
+require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/../config/helpers.php';
 
 use Lib\Application;
 
