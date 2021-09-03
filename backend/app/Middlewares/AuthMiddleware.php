@@ -12,11 +12,11 @@ class AuthMiddleware extends Middleware
     public function execute(Request $request)
     {
         $authorizationHeader = $request->getHeader("Authorization");
-        
+
         if (is_null($authorizationHeader)) {
-            throw new Exception("Requisição não tem autorização!");
+            throw new Exception("Request has no authorization header!");
         }
 
-        $auth = Auth::getInstance()->decode($authorizationHeader);
+        Auth::getInstance()->decode($authorizationHeader);
     }
 }

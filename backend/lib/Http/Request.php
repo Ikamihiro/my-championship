@@ -57,6 +57,9 @@ class Request
 
     public function getHeader(string $headerName)
     {
-        return $this->getHeaders()[$headerName];
+        if (isset($this->getHeaders()[$headerName]))
+            return $this->getHeaders()[$headerName];
+
+        return null;
     }
 }

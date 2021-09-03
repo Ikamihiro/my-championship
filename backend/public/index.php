@@ -17,7 +17,8 @@ use Lib\Application;
 $app = new Application();
 
 $app->router->get('/', [HomeController::class, 'index']);
-$app->router->get('/hello/{name}', [HomeController::class, 'hello'])->addMiddleware(AuthMiddleware::class);
+$app->router->get('/hello/{name}', [HomeController::class, 'hello'])
+    ->addMiddleware(AuthMiddleware::class);
 
 // $app->router->get('/api/user', [UserController::class, 'index']);
 // $app->router->get('/api/user/{id}', [UserController::class, 'show']);

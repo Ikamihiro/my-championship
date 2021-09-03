@@ -8,7 +8,7 @@ class Auth
 {
     protected string $key;
     protected string $algoritm;
-    protected static Auth $instance;
+    private static ?Auth $instance = null;
 
     public function __construct(string $key)
     {
