@@ -2,7 +2,7 @@
 
 namespace Lib\Validation\Rules;
 
-use Frankenstein\Validation\Rule;
+use Lib\Validation\Rule;
 
 class MaxRule extends Rule
 {

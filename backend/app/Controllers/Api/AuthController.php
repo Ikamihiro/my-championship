@@ -3,12 +3,13 @@
 namespace App\Controllers\Api;
 
 use App\Forms\Auth\LoginForm;
-use App\Forms\User\RegisterForm;
+use App\Forms\Auth\RegisterForm;
 use App\Models\User;
 use Lib\Auth\Auth;
 use Lib\Http\Controller;
 use Lib\Http\Request;
 use Lib\Http\Response;
+use Ramsey\Uuid\Uuid;
 
 class AuthController extends Controller
 {
@@ -23,7 +24,7 @@ class AuthController extends Controller
         }
 
         $user = User::create(array_merge($request->getFormJSON(), [
-            'password' => password_hash($request->getFormJSON()['senha'], PASSWORD_BCRYPT),
+            'password' => password_hash($request->getFormJSON()['password'], PASSWORD_BCRYPT),
         ]));
 
         return $response->json($user);
@@ -39,7 +40,10 @@ class AuthController extends Controller
             ], 400);
         }
 
-        $jwtToken = Auth::authenticate($request->getFormJSON()["email"], $request->getFormJSON()["password"]);
+        $jwtToken = Auth::authenticate(
+            $request->getFormJSON()['email'],
+            $request->getFormJSON()['password'],
+        );
 
         return $response->json([
             'token' => $jwtToken,

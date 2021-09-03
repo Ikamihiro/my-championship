@@ -4,6 +4,7 @@ namespace App\Middlewares;
 
 use Exception;
 use Lib\Auth\Auth;
+use Lib\Exceptions\AuthorizationException;
 use Lib\Http\Middleware\Middleware;
 use Lib\Http\Request;
 
@@ -14,9 +15,13 @@ class AuthMiddleware extends Middleware
         $authorizationHeader = $request->getHeader("Authorization");
 
         if (is_null($authorizationHeader)) {
-            throw new Exception("Request has no authorization header!");
+            throw new AuthorizationException("Request has no authorization header!");
         }
 
-        Auth::validate($authorizationHeader);
+        try {
+            Auth::validate($authorizationHeader);
+        } catch (\Throwable $th) {
+            throw new AuthorizationException($th->getMessage());
+        }
     }
 }

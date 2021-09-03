@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Forms\User;
+namespace App\Forms\Auth;
 
 use Lib\Validation\Form;
 use Lib\Validation\Rules\RequiredRule;

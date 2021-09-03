@@ -1,5 +1,5 @@
 CREATE TABLE `users` (
-	`id` CHAR(36) NOT NULL PRIMARY KEY,
+	`id` BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	`name` VARCHAR(250) NOT NULL,
 	`email` VARCHAR(250) NOT NULL,
 	`document` VARCHAR(250) NOT NULL,
@@ -10,7 +10,7 @@ CREATE TABLE `users` (
 );
 
 CREATE TABLE `estados` (
-	`id` CHAR(36) NOT NULL PRIMARY KEY,
+	`id` BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	`nome` VARCHAR(250) NOT NULL,
 	`created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -18,9 +18,9 @@ CREATE TABLE `estados` (
 );
 
 CREATE TABLE `cidades` (
-	`id` CHAR(36) NOT NULL PRIMARY KEY,
+	`id` BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	`nome` VARCHAR(250) NOT NULL,
-	`estado_id` CHAR(36) NOT NULL,
+	`estado_id` BIGINT NOT NULL,
 	`created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     `deleted_at` TIMESTAMP NULL,
@@ -28,7 +28,7 @@ CREATE TABLE `cidades` (
 );
 
 CREATE TABLE `cores` (
-	`id` CHAR(36) NOT NULL PRIMARY KEY,
+	`id` BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	`nome` VARCHAR(250) NOT NULL,
 	`created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -36,10 +36,10 @@ CREATE TABLE `cores` (
 );
 
 CREATE TABLE `times` (
-	`id` CHAR(36) NOT NULL PRIMARY KEY,
+	`id` BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	`nome` VARCHAR(250) NOT NULL,
 	`ano_fundacao` DATETIME NOT NULL,
-	`cidade_id` CHAR(36) NOT NULL,
+	`cidade_id` BIGINT NOT NULL,
 	`created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     `deleted_at` TIMESTAMP NULL,
@@ -47,18 +47,18 @@ CREATE TABLE `times` (
 );
 
 CREATE TABLE `cores_times` (
-	`time_id` CHAR(36) NOT NULL,
-	`cor_id` CHAR(36) NOT NULL,
+	`time_id` BIGINT NOT NULL,
+	`cor_id` BIGINT NOT NULL,
 	CONSTRAINT `fk_time_cores_times` FOREIGN KEY (`time_id`) REFERENCES `times`(`id`),
 	CONSTRAINT `fk_cor_cores_times` FOREIGN KEY (`cor_id`) REFERENCES `cores`(`id`)
 );
 
 CREATE TABLE `presidentes` (
-	`id` CHAR(36) NOT NULL PRIMARY KEY,
+	`id` BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	`nome` VARCHAR(250) NOT NULL,
 	`mandato_inicio` DATETIME NOT NULL,
 	`mandato_fim` DATETIME NULL,
-	`time_id` CHAR(36) NOT NULL,
+	`time_id` BIGINT NOT NULL,
 	`created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     `deleted_at` TIMESTAMP NULL,
@@ -66,11 +66,11 @@ CREATE TABLE `presidentes` (
 );
 
 CREATE TABLE `estadios` (
-	`id` CHAR(36) NOT NULL PRIMARY KEY,
+	`id` BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	`nome` VARCHAR(250) NOT NULL,
 	`capacidade_total` INTEGER NOT NULL,
 	`data_construcao` DATETIME NOT NULL,
-	`time_id` CHAR(36) NOT NULL,
+	`time_id` BIGINT NOT NULL,
 	`created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     `deleted_at` TIMESTAMP NULL,
@@ -78,11 +78,11 @@ CREATE TABLE `estadios` (
 );
 
 CREATE TABLE `uniformes` (
-	`id` CHAR(36) NOT NULL PRIMARY KEY,
+	`id` BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	`temporada` VARCHAR(20) NOT NULL,
 	`modelo_principal` VARCHAR(250) NOT NULL,
 	`modelo_secundario` VARCHAR(250) NOT NULL,
-	`time_id` CHAR(36) NOT NULL,
+	`time_id` BIGINT NOT NULL,
 	`created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     `deleted_at` TIMESTAMP NULL,
@@ -90,7 +90,7 @@ CREATE TABLE `uniformes` (
 );
 
 CREATE TABLE `membros` (
-	`id` CHAR(36) NOT NULL PRIMARY KEY,
+	`id` BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	`nome` VARCHAR(250) NOT NULL,
 	`funcao` VARCHAR(20) NOT NULL, # tecnico, auxiliar, preparador_fisico
 	`data_admissao` VARCHAR(250) NOT NULL,
@@ -100,8 +100,8 @@ CREATE TABLE `membros` (
 );
 
 CREATE TABLE `comissoes_tecnicas` (
-	`id` CHAR(36) NOT NULL PRIMARY KEY,
-	`time_id` CHAR(36) NOT NULL,
+	`id` BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	`time_id` BIGINT NOT NULL,
 	`created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     `deleted_at` TIMESTAMP NULL,
@@ -109,16 +109,16 @@ CREATE TABLE `comissoes_tecnicas` (
 );
 
 CREATE TABLE `comissoes_tecnicas_membros` (
-	`membro_id` CHAR(36) NOT NULL,
-	`comissao_id` CHAR(36) NOT NULL,
+	`membro_id` BIGINT NOT NULL,
+	`comissao_id` BIGINT NOT NULL,
 	CONSTRAINT `fk_membro_comissoes_tecnicas_membros` FOREIGN KEY (`membro_id`) REFERENCES `membros`(`id`),
 	CONSTRAINT `fk_comissao_comissoes_tecnicas_membros` FOREIGN KEY (`comissao_id`) REFERENCES `comissoes_tecnicas`(`id`)
 );
 
 CREATE TABLE `planteis` (
-	`id` CHAR(36) NOT NULL PRIMARY KEY,
+	`id` BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	`temporada` VARCHAR(20) NOT NULL,
-	`time_id` CHAR(36) NOT NULL,
+	`time_id` BIGINT NOT NULL,
 	`created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     `deleted_at` TIMESTAMP NULL,
@@ -126,13 +126,13 @@ CREATE TABLE `planteis` (
 );
 
 CREATE TABLE `jogadores` (
-	`id` CHAR(36) NOT NULL PRIMARY KEY,
+	`id` BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	`nome` VARCHAR(250) NOT NULL,
 	`temporada` VARCHAR(20) NOT NULL,
 	`data_admissao` VARCHAR(250) NOT NULL,
 	`posicao` VARCHAR(250) NOT NULL,
 	`data_nascimento` VARCHAR(250) NOT NULL,
-	`time_id` CHAR(36) NOT NULL,
+	`time_id` BIGINT NOT NULL,
 	`created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     `deleted_at` TIMESTAMP NULL,
@@ -140,7 +140,7 @@ CREATE TABLE `jogadores` (
 );
 
 CREATE TABLE `campeonatos` (
-	`id` CHAR(36) NOT NULL PRIMARY KEY,
+	`id` BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	`nome` VARCHAR(250) NOT NULL,
 	`temporada` VARCHAR(20) NOT NULL,
 	`tipo` VARCHAR(20) NOT NULL, # pontos_corridos, mata_mata
@@ -151,14 +151,14 @@ CREATE TABLE `campeonatos` (
 );
 
 CREATE TABLE `campeonatos_times` (
-	`time_id` CHAR(36) NOT NULL,
-	`campeonato_id` CHAR(36) NOT NULL,
+	`time_id` BIGINT NOT NULL,
+	`campeonato_id` BIGINT NOT NULL,
 	CONSTRAINT `fk_time_campeonatos_times` FOREIGN KEY (`time_id`) REFERENCES `times`(`id`),
 	CONSTRAINT `fk_campeonato_campeonatos_times` FOREIGN KEY (`campeonato_id`) REFERENCES `campeonatos`(`id`)
 );
 
 CREATE TABLE `patrocinadores` (
-	`id` CHAR(36) NOT NULL PRIMARY KEY,
+	`id` BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	`nome` VARCHAR(250) NOT NULL,
 	`created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -166,16 +166,16 @@ CREATE TABLE `patrocinadores` (
 );
 
 CREATE TABLE `campeonatos_patrocinadores` (
-	`patrocinador_id` CHAR(36) NOT NULL,
-	`campeonato_id` CHAR(36) NOT NULL,
+	`patrocinador_id` BIGINT NOT NULL,
+	`campeonato_id` BIGINT NOT NULL,
 	CONSTRAINT `fk_patrocinador_campeonatos_patrocinadores` FOREIGN KEY (`patrocinador_id`) REFERENCES `patrocinadores`(`id`),
 	CONSTRAINT `fk_campeonato_campeonatos_patrocinadores` FOREIGN KEY (`campeonato_id`) REFERENCES `campeonatos`(`id`)
 );
 
 CREATE TABLE `campeoes` (
-	`id` CHAR(36) NOT NULL PRIMARY KEY,
-	`time_id` CHAR(36) NOT NULL,
-	`campeonato_id` CHAR(36) NOT NULL,
+	`id` BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	`time_id` BIGINT NOT NULL,
+	`campeonato_id` BIGINT NOT NULL,
 	`created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     `deleted_at` TIMESTAMP NULL,
@@ -184,11 +184,11 @@ CREATE TABLE `campeoes` (
 );
 
 CREATE TABLE `partidas` (
-	`id` CHAR(36) NOT NULL PRIMARY KEY,
+	`id` BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	`data_partida` VARCHAR(250) NOT NULL,
-	`mandante_id` CHAR(36) NOT NULL,
-	`visitante_id` CHAR(36) NOT NULL,
-	`campeonato_id` CHAR(36) NOT NULL,
+	`mandante_id` BIGINT NOT NULL,
+	`visitante_id` BIGINT NOT NULL,
+	`campeonato_id` BIGINT NOT NULL,
 	`created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     `deleted_at` TIMESTAMP NULL,
@@ -198,12 +198,12 @@ CREATE TABLE `partidas` (
 );
 
 CREATE TABLE `resultados` (
-	`id` CHAR(36) NOT NULL PRIMARY KEY,
+	`id` BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	`gols_mandante` INTEGER NOT NULL,
 	`gols_visitante` INTEGER NOT NULL,
-	`mandante_id` CHAR(36) NOT NULL,
-	`visitante_id` CHAR(36) NOT NULL,
-	`partida_id` CHAR(36) NOT NULL,
+	`mandante_id` BIGINT NOT NULL,
+	`visitante_id` BIGINT NOT NULL,
+	`partida_id` BIGINT NOT NULL,
 	`created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     `deleted_at` TIMESTAMP NULL,
@@ -213,11 +213,11 @@ CREATE TABLE `resultados` (
 );
 
 CREATE TABLE `transmissoes` (
-	`id` CHAR(36) NOT NULL PRIMARY KEY,
+	`id` BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	`tipo` VARCHAR(20) NOT NULL, # TV, Rádio, Lives
 	`narrador` VARCHAR(250) NOT NULL, # Nome do narrador
 	`data_transmissao` DATETIME NOT NULL,
-	`partida_id` CHAR(36) NOT NULL,
+	`partida_id` BIGINT NOT NULL,
 	`created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     `deleted_at` TIMESTAMP NULL,
@@ -225,8 +225,8 @@ CREATE TABLE `transmissoes` (
 );
 
 CREATE TABLE `ambitragens` (
-	`id` CHAR(36) NOT NULL PRIMARY KEY,
-	`partida_id` CHAR(36) NOT NULL,
+	`id` BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	`partida_id` BIGINT NOT NULL,
 	`created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     `deleted_at` TIMESTAMP NULL,
@@ -234,7 +234,7 @@ CREATE TABLE `ambitragens` (
 );
 
 CREATE TABLE `arbitros` (
-	`id` CHAR(36) NOT NULL PRIMARY KEY,
+	`id` BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	`nome` VARCHAR(250) NOT NULL,
 	`data_nascimento` DATETIME NOT NULL,
 	`tipo` VARCHAR(20) NOT NULL, # principal, auxiliar, quatro_arbitro, arbitro_var
@@ -244,8 +244,8 @@ CREATE TABLE `arbitros` (
 );
 
 CREATE TABLE `arbitros_ambitragens` (
-	`arbitragem_id` CHAR(36) NOT NULL,
-	`arbitro_id` CHAR(36) NOT NULL,
+	`arbitragem_id` BIGINT NOT NULL,
+	`arbitro_id` BIGINT NOT NULL,
 	CONSTRAINT `fk_arbitragem_arbitros_ambitragens` FOREIGN KEY (`arbitragem_id`) REFERENCES `ambitragens`(`id`),
 	CONSTRAINT `fk_arbitro_arbitros_ambitragens` FOREIGN KEY (`arbitro_id`) REFERENCES `arbitros`(`id`)
 );

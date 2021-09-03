@@ -2,14 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Model
 {
     use SoftDeletes;
-
-    protected $table = 'users';
 
     protected $fillable = [
         'name',
@@ -18,5 +17,7 @@ class User extends Model
         'password',
     ];
 
-    protected $dates = ['deleted_at'];
+    protected $dates = [
+        'deleted_at',
+    ];
 }
