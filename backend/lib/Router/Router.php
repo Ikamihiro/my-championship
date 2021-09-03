@@ -144,9 +144,4 @@ class Router
 
         return $result;
     }
-
-    // public function getRoutes()
-    // {
-    //     return $this->routes;
-    // }
 }

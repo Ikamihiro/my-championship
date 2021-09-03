@@ -3,8 +3,6 @@
 namespace Lib\Auth;
 
 use App\Models\User;
-use Exception;
-use Firebase\JWT\JWT;
 use Lib\Exceptions\IncorretPasswordException;
 
 class Auth

@@ -2,7 +2,6 @@
 
 namespace App\Middlewares;
 
-use Exception;
 use Lib\Auth\Auth;
 use Lib\Exceptions\AuthorizationException;
 use Lib\Http\Middleware\Middleware;

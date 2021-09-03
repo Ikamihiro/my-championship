@@ -9,7 +9,6 @@ use Lib\Auth\Auth;
 use Lib\Http\Controller;
 use Lib\Http\Request;
 use Lib\Http\Response;
-use Ramsey\Uuid\Uuid;
 
 class AuthController extends Controller
 {
