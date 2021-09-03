@@ -2,6 +2,7 @@
 
 namespace Lib\Auth;
 
+use App\Models\User;
 use Firebase\JWT\JWT;
 
 class Auth
@@ -35,13 +36,28 @@ class Auth
         return $this->algoritm;
     }
 
-    public function encode(array $payload)
+    public static function authenticate(string $email, string $password)
     {
-        return JWT::encode($payload, $this->getKey());
+        $instance = self::getInstance();
+
+        $passwordHash = password_hash($password, PASSWORD_BCRYPT);
+
+        $user = User::where([
+            'email' => $email,
+            'password' => $passwordHash,
+        ])->firstOrFail();
+
+        $payload = [
+            'user' => $user,
+        ];
+
+        return JWTToken::encode($payload, $instance->getKey());
     }
 
-    public function decode(string $token)
+    public static function validate(string $jwtToken)
     {
-        return JWT::decode($token, $this->getKey(), [$this->getAlgorithm()]);
+        $instance = self::getInstance();
+
+        return JWTToken::decode($jwtToken, $instance->getKey(), $instance->getAlgorithm());
     }
 }

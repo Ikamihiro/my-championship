@@ -9,21 +9,15 @@ require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/../config/env.php';
 require __DIR__ . '/../config/database.php';
 
-use App\Controllers\HomeController;
-use App\Controllers\Api\{AddressController, UserController};
-use App\Middlewares\AuthMiddleware;
 use Lib\Application;
 
 $app = new Application();
 
-$app->router->get('/', [HomeController::class, 'index']);
-$app->router->get('/hello/{name}', [HomeController::class, 'hello'])
-    ->addMiddleware(AuthMiddleware::class);
+$app->router->get('/', [\App\Controllers\HomeController::class, 'index']);
 
-// $app->router->get('/api/user', [UserController::class, 'index']);
-// $app->router->get('/api/user/{id}', [UserController::class, 'show']);
-// $app->router->post('/api/user', [UserController::class, 'create']);
-// $app->router->put('/api/user/{id}', [UserController::class, 'update']);
-// $app->router->delete('/api/user/{id}', [UserController::class, 'delete']);
+$app->router->get('/register', [\App\Controllers\Api\AuthController::class, 'register']);
+$app->router->get('/login', [\App\Controllers\Api\AuthController::class, 'login']);
+
+$app->router->get('/hello/{name}', [\App\Controllers\HomeController::class, 'hello'])->addMiddleware(\App\Middlewares\AuthMiddleware::class);
 
 $app->run();

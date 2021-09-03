@@ -17,6 +17,6 @@ class AuthMiddleware extends Middleware
             throw new Exception("Request has no authorization header!");
         }
 
-        Auth::getInstance()->decode($authorizationHeader);
+        Auth::validate($authorizationHeader);
     }
 }

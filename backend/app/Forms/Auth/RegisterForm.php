@@ -5,15 +5,15 @@ namespace App\Forms\User;
 use Lib\Validation\Form;
 use Lib\Validation\Rules\RequiredRule;
 
-class UpdateUserForm extends Form
+class RegisterForm extends Form
 {
-    public static function create(array $data)
+    public static function make(array $data)
     {
         $rules = [
             'name' => [new RequiredRule],
             'email' => [new RequiredRule],
             'document' => [new RequiredRule],
-            'senha' => [new RequiredRule],
+            'password' => [new RequiredRule],
         ];
 
         return new self($data, $rules);
