@@ -21,4 +21,8 @@ class User extends Model
     protected $dates = [
         'deleted_at',
     ];
+
+    protected $hidden = [
+        'password',
+    ];
 }

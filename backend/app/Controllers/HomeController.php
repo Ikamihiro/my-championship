@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use Illuminate\Database\Capsule\Manager as Database;
 use Lib\Http\Controller;
 use Lib\Http\Request;
 use Lib\Http\Response;
@@ -12,13 +13,6 @@ class HomeController extends Controller
     {
         return $response->json([
             'data' => 'Hello World!',
-        ]);
-    }
-
-    public function hello(Request $request, Response $response, string $name)
-    {
-        return $response->json([
-            'data' => "Hello, $name!",
         ]);
     }
 }

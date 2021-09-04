@@ -2,6 +2,7 @@
 
 namespace App\Forms\Auth;
 
+use App\Forms\Rules\UniqueRule;
 use Lib\Validation\Form;
 use Lib\Validation\Rules\RequiredRule;
 
@@ -11,7 +12,10 @@ class RegisterForm extends Form
     {
         $rules = [
             'name' => [new RequiredRule],
-            'email' => [new RequiredRule],
+            'email' => [
+                new RequiredRule,
+                new UniqueRule('users', 'email'),
+            ],
             'document' => [new RequiredRule],
             'password' => [new RequiredRule],
         ];
