@@ -132,11 +132,11 @@ CREATE TABLE `jogadores` (
 	`data_admissao` VARCHAR(250) NOT NULL,
 	`posicao` VARCHAR(250) NOT NULL,
 	`data_nascimento` VARCHAR(250) NOT NULL,
-	`time_id` BIGINT NOT NULL,
+	`plantel_id` BIGINT NOT NULL,
 	`created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     `deleted_at` TIMESTAMP NULL,
-	CONSTRAINT `fk_jogador_time` FOREIGN KEY (`time_id`) REFERENCES `times`(`id`)
+	CONSTRAINT `fk_jogador_plantel` FOREIGN KEY (`plantel_id`) REFERENCES `planteis`(`id`)
 );
 
 CREATE TABLE `campeonatos` (
