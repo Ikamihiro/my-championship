@@ -8,7 +8,7 @@ use Lib\Http\Controller;
 use Lib\Http\Request;
 use Lib\Http\Response;
 
-class AuthController extends Controller
+class EstadoController extends Controller
 {
     public function index(Request $request, Response $response)
     {

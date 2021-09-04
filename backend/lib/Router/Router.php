@@ -34,7 +34,7 @@ class Router
     /**
      * @param string $method
      * @param string $route
-     * @param string|callable $action $action
+     * @param string|callable $action
      *
      * @return Router
      */
@@ -49,7 +49,7 @@ class Router
 
     /**
      * @param string $route
-     * @param string|callable $action $action
+     * @param string|callable $action
      *
      * @return Route
      */
@@ -60,7 +60,7 @@ class Router
 
     /**
      * @param string $route
-     * @param string|callable $action $action
+     * @param string|callable $action
      *
      * @return Route
      */
@@ -71,7 +71,7 @@ class Router
 
     /**
      * @param string $route
-     * @param string|callable $action $action
+     * @param string|callable $action
      *
      * @return Route
      */
@@ -82,7 +82,7 @@ class Router
 
     /**
      * @param string $route
-     * @param string|callable $action $action
+     * @param string|callable $action
      *
      * @return Route
      */
@@ -90,7 +90,7 @@ class Router
     {
         return $this->add('delete', $route, $action);
     }
-    
+
     /**
      * @return array
      */
@@ -98,7 +98,7 @@ class Router
     {
         return $this->params ? array_slice($this->params, 1) : [];
     }
-    
+
     /**
      * Method getRoute
      *
@@ -143,5 +143,24 @@ class Router
         $this->params = $params;
 
         return $result;
+    }
+
+    public function apiRoutes(string $prefix, string $controllerClass, string $middlewareClass = null)
+    {
+        $index = $this->get($prefix, [$controllerClass, 'index']);
+        $create = $this->post($prefix, [$controllerClass, 'create']);
+        $update = $this->put($prefix . '/{id}', [$controllerClass, 'update']);
+        $show = $this->get($prefix . '/{id}', [$controllerClass, 'show']);
+        $delete = $this->delete($prefix . '/{id}', [$controllerClass, 'delete']);
+
+        if (!is_null($middlewareClass)) {
+            $index->addMiddleware($middlewareClass);
+            $create->addMiddleware($middlewareClass);
+            $update->addMiddleware($middlewareClass);
+            $show->addMiddleware($middlewareClass);
+            $delete->addMiddleware($middlewareClass);
+        }
+
+        return $this;
     }
 }
