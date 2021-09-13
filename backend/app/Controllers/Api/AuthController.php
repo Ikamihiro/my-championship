@@ -17,9 +17,7 @@ class AuthController extends Controller
         $form = RegisterForm::make($request->getFormJSON());
 
         if (!$form->validate()) {
-            return $response->json([
-                'errors' => $form->getErrors(),
-            ], 400);
+            return $response->badRequest($form->getErrors());
         }
 
         $user = User::create(array_merge($request->getFormJSON(), [
@@ -34,9 +32,7 @@ class AuthController extends Controller
         $form = LoginForm::make($request->getFormJSON());
 
         if (!$form->validate()) {
-            return $response->json([
-                'errors' => $form->getErrors(),
-            ], 400);
+            return $response->badRequest($form->getErrors());
         }
 
         $jwtToken = Auth::authenticate(

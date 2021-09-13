@@ -40,4 +40,9 @@ class Response
 
         return json_encode('Not found');
     }
+
+    public function badRequest($errors = [])
+    {
+        return $this->json(['errors' => $errors], 400);
+    }
 }

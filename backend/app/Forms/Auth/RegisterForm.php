@@ -2,7 +2,7 @@
 
 namespace App\Forms\Auth;
 
-use App\Forms\Rules\UniqueRule;
+use App\Rules\UniqueRule;
 use Lib\Validation\Form;
 use Lib\Validation\Rules\RequiredRule;
 

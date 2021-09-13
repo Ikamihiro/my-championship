@@ -21,9 +21,7 @@ class EstadoController extends Controller
         $form = EstadoForm::make($request->getFormJSON());
 
         if (!$form->validate()) {
-            return $response->json([
-                'errors' => $form->getErrors(),
-            ], 400);
+            return $response->badRequest($form->getErrors());
         }
 
         $estado = Estado::create($request->getFormJSON());
@@ -37,9 +35,7 @@ class EstadoController extends Controller
         $form = EstadoForm::make($request->getFormJSON());
 
         if (!$form->validate()) {
-            return $response->json([
-                'errors' => $form->getErrors(),
-            ], 400);
+            return $response->badRequest($form->getErrors());
         }
 
         $estado->update($request->getFormJSON());

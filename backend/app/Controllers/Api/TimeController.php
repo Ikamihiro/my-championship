@@ -2,57 +2,57 @@
 
 namespace App\Controllers\Api;
 
-use App\Forms\Cidade\CidadeForm;
-use App\Models\Cidade;
+use App\Forms\Time\TimeForm;
+use App\Models\Time;
 use Lib\Http\Controller;
 use Lib\Http\Request;
 use Lib\Http\Response;
 
-class CidadeController extends Controller
+class TimeController extends Controller
 {
     public function index(Request $request, Response $response)
     {
-        $cidades = Cidade::all();
-        return $response->json($cidades);
+        $times = Time::all();
+        return $response->json($times);
     }
 
     public function create(Request $request, Response $response)
     {
-        $form = CidadeForm::make($request->getFormJSON());
+        $form = TimeForm::make($request->getFormJSON());
 
         if (!$form->validate()) {
             return $response->badRequest($form->getErrors());
         }
 
-        $cidade = Cidade::create($request->getFormJSON());
+        $time = Time::create($request->getFormJSON());
 
-        return $response->json($cidade);
+        return $response->json($time);
     }
 
     public function update(Request $request, Response $response, int $id)
     {
-        $cidade = Cidade::findOrFail($id);
-        $form = CidadeForm::make($request->getFormJSON());
+        $time = Time::findOrFail($id);
+        $form = TimeForm::make($request->getFormJSON());
 
         if (!$form->validate()) {
             return $response->badRequest($form->getErrors());
         }
 
-        $cidade->update($request->getFormJSON());
+        $time->update($request->getFormJSON());
 
-        return $response->json($cidade);
+        return $response->json($time);
     }
 
     public function show(Request $request, Response $response, int $id)
     {
-        $cidade = Cidade::findOrFail($id);
-        return $response->json($cidade);
+        $time = Time::findOrFail($id);
+        return $response->json($time);
     }
 
     public function delete(Request $request, Response $response, int $id)
     {
-        $cidade = Cidade::findOrFail($id);
-        $cidade->delete();
+        $time = Time::findOrFail($id);
+        $time->delete();
         return $response->noContent();
     }
 }

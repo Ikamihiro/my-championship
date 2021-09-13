@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Forms\Rules;
+namespace App\Rules;
 
 use Lib\Validation\Rule;
 use Illuminate\Database\Capsule\Manager as Database;
