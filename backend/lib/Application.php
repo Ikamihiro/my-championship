@@ -29,9 +29,7 @@ class Application
             $route = $this->router->getRoute();
 
             if (!$route) {
-                echo $this->response->json([
-                    'error' => 'Not found',
-                ], 404);
+                echo $this->response->notFound();
                 die();
             }
 

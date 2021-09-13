@@ -31,4 +31,13 @@ class Response
 
         header('Content-Type: application/json');
     }
+
+    public function notFound()
+    {
+        $this->setStatusCode(404);
+
+        header('Content-Type: application/json');
+
+        return json_encode('Not found');
+    }
 }
