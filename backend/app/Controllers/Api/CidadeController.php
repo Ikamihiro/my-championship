@@ -2,23 +2,23 @@
 
 namespace App\Controllers\Api;
 
-use App\Forms\Estado\EstadoForm;
-use App\Models\Estado;
+use App\Forms\Cidade\CidadeForm;
+use App\Models\Cidade;
 use Lib\Http\Controller;
 use Lib\Http\Request;
 use Lib\Http\Response;
 
-class EstadoController extends Controller
+class CidadeController extends Controller
 {
     public function index(Request $request, Response $response)
     {
-        $estados = Estado::all();
-        return $response->json($estados);
+        $cidades = Cidade::all();
+        return $response->json($cidades);
     }
 
     public function create(Request $request, Response $response)
     {
-        $form = EstadoForm::make($request->getFormJSON());
+        $form = CidadeForm::make($request->getFormJSON());
 
         if (!$form->validate()) {
             return $response->json([
@@ -26,15 +26,15 @@ class EstadoController extends Controller
             ], 400);
         }
 
-        $estado = Estado::create($request->getFormJSON());
+        $cidade = Cidade::create($request->getFormJSON());
 
-        return $response->json($estado);
+        return $response->json($cidade);
     }
 
     public function update(Request $request, Response $response, int $id)
     {
-        $estado = Estado::findOrFail($id);
-        $form = EstadoForm::make($request->getFormJSON());
+        $cidade = Cidade::findOrFail($id);
+        $form = CidadeForm::make($request->getFormJSON());
 
         if (!$form->validate()) {
             return $response->json([
@@ -42,21 +42,21 @@ class EstadoController extends Controller
             ], 400);
         }
 
-        $estado->update($request->getFormJSON());
+        $cidade->update($request->getFormJSON());
 
-        return $response->json($estado);
+        return $response->json($cidade);
     }
 
     public function show(Request $request, Response $response, int $id)
     {
-        $estado = Estado::findOrFail($id);
-        return $response->json($estado);
+        $cidade = Cidade::findOrFail($id);
+        return $response->json($cidade);
     }
 
     public function delete(Request $request, Response $response, int $id)
     {
-        $estado = Estado::findOrFail($id);
-        $estado->delete();
+        $cidade = Cidade::findOrFail($id);
+        $cidade->delete();
         return $response->noContent();
     }
 }
