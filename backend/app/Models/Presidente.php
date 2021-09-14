@@ -14,7 +14,8 @@ class Presidente extends Model
     protected $fillable = [
         'nome',
         'mandato_inicio',
-        'mandato_fim'
+        'mandato_fim',
+        'time_id'
     ];
 
     protected $casts = [

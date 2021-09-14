@@ -14,6 +14,7 @@ class Time extends Model
     protected $fillable = [
         'nome',
         'ano_fundacao',
+        'cidade_id'
     ];
 
     protected $casts = [
