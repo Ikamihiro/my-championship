@@ -36,7 +36,7 @@ class Router
      * @param string $route
      * @param string|callable $action
      *
-     * @return Router
+     * @return Route
      */
     public function add(string $method, string $route, $action)
     {

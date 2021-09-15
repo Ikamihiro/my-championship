@@ -11,6 +11,10 @@ class ComissaoTecnica extends Model
 
     protected $table = 'comissoes_tecnicas';
 
+    protected $fillable = [
+        'time_id',
+    ];
+
     public function time()
     {
         return $this->belongsTo(Time::class, 'time_id');
