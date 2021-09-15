@@ -13,9 +13,11 @@ require_once __DIR__ . '/../config/database.php';
 use App\Controllers\Api\{
     AuthController,
     CidadeController,
+    EstadioController,
     EstadoController,
     PresidenteController,
-    TimeController
+    TimeController,
+    UniformeController
 };
 use App\Controllers\HomeController;
 use App\Middlewares\AuthMiddleware;
@@ -32,5 +34,7 @@ $app->router->apiRoutes('/api/estado', EstadoController::class, AuthMiddleware::
 $app->router->apiRoutes('/api/cidade', CidadeController::class, AuthMiddleware::class);
 $app->router->apiRoutes('/api/time', TimeController::class, AuthMiddleware::class);
 $app->router->apiRoutes('/api/presidente', PresidenteController::class, AuthMiddleware::class);
+$app->router->apiRoutes('/api/estadios', EstadioController::class, AuthMiddleware::class);
+$app->router->apiRoutes('/api/uniformes', UniformeController::class, AuthMiddleware::class);
 
 $app->run();

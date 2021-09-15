@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Forms\Estadio;
+namespace App\Forms\Uniforme;
 
 use App\Rules\ExistsRule;
 use Lib\Validation\Form;
 use Lib\Validation\Rules\RequiredRule;
 
-class EstadioForm extends Form
+class UniformeForm extends Form
 {
     public static function make(array $data)
     {
         $rules = [
-            'nome' => [new RequiredRule],
-            'capacidade_total' => [new RequiredRule],
-            'data_construcao' => [new RequiredRule],
+            'temporada' => [new RequiredRule],
+            'modelo_principal' => [new RequiredRule],
+            'modelo_secundario' => [new RequiredRule],
             'time_id' => [
                 new RequiredRule,
                 new ExistsRule('times'),

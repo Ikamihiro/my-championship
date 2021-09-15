@@ -2,55 +2,55 @@
 
 namespace App\Controllers\Api;
 
-use App\Forms\Estadio\EstadioForm;
-use App\Models\Estadio;
+use App\Forms\Uniforme\UniformeForm;
+use App\Models\Uniforme;
 use Lib\Http\Controller;
 use Lib\Http\Request;
 use Lib\Http\Response;
 
-class EstadioController extends Controller
+class UniformeController extends Controller
 {
     public function index(Request $request, Response $response)
     {
-        $estadios = Estadio::all();
-        return $response->json($estadios);
+        $uniformes = Uniforme::all();
+        return $response->json($uniformes);
     }
 
     public function create(Request $request, Response $response)
     {
-        $form = EstadioForm::make($request->getFormJSON());
+        $form = UniformeForm::make($request->getFormJSON());
 
         if (!$form->validate()) {
             return $response->badRequest($form->getErrors());
         }
-        
-        $estadio = Estadio::create($request->getFormJSON());
-        return $response->json($estadio);
+
+        $uniforme = Uniforme::create($request->getFormJSON());
+        return $response->json($uniforme);
     }
 
     public function update(Request $request, Response $response, int $id)
     {
-        $estadio = Estadio::findOrFail($id);
-        $form = EstadioForm::make($request->getFormJSON());
+        $uniforme = Uniforme::findOrFail($id);
+        $form = UniformeForm::make($request->getFormJSON());
 
         if (!$form->validate()) {
             return $response->badRequest($form->getErrors());
         }
 
-        $estadio->update($request->getFormJSON());
-        return $response->json($estadio);
+        $uniforme->update($request->getFormJSON());
+        return $response->json($uniforme);
     }
 
     public function show(Request $request, Response $response, int $id)
     {
-        $estadio = Estadio::findOrFail($id);
-        return $response->json($estadio);
+        $uniforme = Uniforme::findOrFail($id);
+        return $response->json($uniforme);
     }
 
     public function delete(Request $request, Response $response, int $id)
     {
-        $estadio = Estadio::findOrFail($id);
-        $estadio->delete();
+        $uniforme = Uniforme::findOrFail($id);
+        $uniforme->delete();
         return $response->noContent();
     }
 }

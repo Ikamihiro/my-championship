@@ -14,7 +14,8 @@ class Uniforme extends Model
     protected $fillable = [
         'temporada',
         'modelo_principal',
-        'modelo_secundario'
+        'modelo_secundario',
+        'time_id',
     ];
 
     public function time()

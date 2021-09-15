@@ -15,7 +15,7 @@ class Presidente extends Model
         'nome',
         'mandato_inicio',
         'mandato_fim',
-        'time_id'
+        'time_id',
     ];
 
     protected $casts = [
