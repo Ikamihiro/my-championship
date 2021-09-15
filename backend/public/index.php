@@ -13,7 +13,9 @@ require_once __DIR__ . '/../config/database.php';
 use App\Controllers\Api\{
     AuthController,
     CidadeController,
-    EstadoController
+    EstadoController,
+    PresidenteController,
+    TimeController
 };
 use App\Controllers\HomeController;
 use App\Middlewares\AuthMiddleware;
@@ -28,5 +30,7 @@ $app->router->post('/login', [AuthController::class, 'login']);
 
 $app->router->apiRoutes('/api/estado', EstadoController::class, AuthMiddleware::class);
 $app->router->apiRoutes('/api/cidade', CidadeController::class, AuthMiddleware::class);
+$app->router->apiRoutes('/api/time', TimeController::class, AuthMiddleware::class);
+$app->router->apiRoutes('/api/presidente', PresidenteController::class, AuthMiddleware::class);
 
 $app->run();

@@ -4,13 +4,17 @@ namespace App\Controllers\Api;
 
 use App\Forms\Presidente\PresidenteForm;
 use App\Models\Presidente;
-use App\Models\Time;
 use Lib\Http\Controller;
 use Lib\Http\Request;
 use Lib\Http\Response;
 
 class PresidenteController extends Controller
 {
+    public function index(Request $request, Response $response)
+    {
+        return $response->json(Presidente::all());
+    }
+
     public function create(Request $request, Response $response)
     {
         $form = PresidenteForm::make($request->getFormJSON());
