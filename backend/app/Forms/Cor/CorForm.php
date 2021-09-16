@@ -2,7 +2,6 @@
 
 namespace App\Forms\Cor;
 
-use App\Rules\ExistsRule;
 use Lib\Validation\Form;
 use Lib\Validation\Rules\RequiredRule;
 
