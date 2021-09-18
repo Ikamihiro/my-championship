@@ -18,7 +18,8 @@ use App\Controllers\Api\{
     PresidenteController,
     TimeController,
     UniformeController,
-    ArbitroController
+    ArbitroController,
+    CorController
 };
 use App\Controllers\HomeController;
 use App\Middlewares\AuthMiddleware;
@@ -33,6 +34,7 @@ $app->router->post('/login', [AuthController::class, 'login']);
 
 $app->router->apiRoutes('/api/estado', EstadoController::class, AuthMiddleware::class);
 $app->router->apiRoutes('/api/cidade', CidadeController::class, AuthMiddleware::class);
+$app->router->apiRoutes('/api/cor', CorController::class, AuthMiddleware::class);
 $app->router->apiRoutes('/api/time', TimeController::class, AuthMiddleware::class);
 $app->router->apiRoutes('/api/presidente', PresidenteController::class, AuthMiddleware::class);
 $app->router->apiRoutes('/api/estadios', EstadioController::class, AuthMiddleware::class);

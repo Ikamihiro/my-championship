@@ -13,6 +13,7 @@ class Cor extends Model
 
     protected $fillable = [
         'nome',
+        'hex',
     ];
 
     public function times()
