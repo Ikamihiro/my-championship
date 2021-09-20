@@ -1,0 +1,106 @@
+
+img{
+    width: 6rem;
+    height: auto;
+}
+
+.navbar{
+    background-color: #227225;
+}
+
+ul li a{
+    
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 25px;
+    line-height: 42px;
+    top: 46px;  
+} 
+.nav-item :active{
+    color: #519154;
+}
+#M1{
+    
+    width: 140px;
+    height: 42px;
+    left: 282px;
+    color: #FFFFFF;
+}
+
+#M2{
+    
+    width: 220px;
+    height: 42px;
+    left: 800px;
+    color: #FFFFFF;
+}
+#M3{
+    
+    width: 160px;
+    height: 42px;
+    left: 916px;
+    color: #FFFFFF;    
+}
+#M4{
+
+    width: 205px;
+    height: 42px;
+    left: 1084px;
+    color: #FFFFFF;
+}
+
+#card1{
+    width: 75%;
+    left: 12.5%;
+    top: 3rem;
+    background: #FFFFFF;
+    border: 3px solid #404440;
+    border-radius: 20px;
+}
+
+.textCard{
+    
+    /*height: 42px;
+    left: 101px;*/
+    text-align: left;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.8vw;
+    line-height: 60px;
+
+    color: #000000;
+}
+
+.btn{
+    float: right;
+    width: 30%;
+    height: 70%;
+    background: #227225;
+    border-radius: 20px;   
+}
+.textBotao{
+    text-align: center;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.80vw;
+    line-height: 35px;
+    color: #FFFFFF;
+}
+@media(max-width: 600px){
+
+    .textCard {
+        font-size: 0.65em;
+    }
+    .textBotao{
+        font-size: 0.65em;
+    }
+}
+footer div{
+    background-color: #519154;
+}
+.textFooter{
+    color: #FFFFFF;
+}
