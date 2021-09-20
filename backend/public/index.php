@@ -19,7 +19,8 @@ use App\Controllers\Api\{
     TimeController,
     UniformeController,
     ArbitroController,
-    CorController
+    CorController,
+    ArbitragemController
 };
 use App\Controllers\HomeController;
 use App\Middlewares\AuthMiddleware;
@@ -40,5 +41,6 @@ $app->router->apiRoutes('/api/presidente', PresidenteController::class, AuthMidd
 $app->router->apiRoutes('/api/estadios', EstadioController::class, AuthMiddleware::class);
 $app->router->apiRoutes('/api/uniformes', UniformeController::class, AuthMiddleware::class);
 $app->router->apiRoutes('/api/arbitro', ArbitroController::class, AuthMiddleware::class);
+$app->router->apiRoutes('/api/arbitragem', ArbitragemController::class, AuthMiddleware::class);
 
 $app->run();
