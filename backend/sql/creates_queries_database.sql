@@ -244,3 +244,10 @@ CREATE TABLE `arbitros_ambitragens` (
 	CONSTRAINT `fk_arbitragem_arbitros_ambitragens` FOREIGN KEY (`arbitragem_id`) REFERENCES `ambitragens`(`id`),
 	CONSTRAINT `fk_arbitro_arbitros_ambitragens` FOREIGN KEY (`arbitro_id`) REFERENCES `arbitros`(`id`)
 );
+
+
+ALTER TABLE `estados`
+ADD `sigla` VARCHAR(2) NOT NULL;
+
+ALTER TABLE `cores`
+ADD `hex` VARCHAR(20) NOT NULL;

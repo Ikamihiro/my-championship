@@ -11,6 +11,7 @@ class CorForm extends Form
     {
         $rules = [
             'nome' => [new RequiredRule],
+            'hex' => [new RequiredRule]
         ];
 
         return new self($data, $rules);

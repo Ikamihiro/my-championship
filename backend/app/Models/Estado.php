@@ -13,6 +13,7 @@ class Estado extends Model
 
     protected $fillable = [
         'nome',
+        'sigla',
     ];
 
     public function cidades()
