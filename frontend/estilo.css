@@ -17,6 +17,10 @@ ul li a{
     line-height: 42px;
     top: 46px;  
 } 
+
+.nav-link{
+    font-size: 20px;
+}
 .nav-item :active{
     color: #519154;
 }
@@ -100,7 +104,15 @@ ul li a{
 }
 footer div{
     background-color: #519154;
+    height: 50px;
 }
 .textFooter{
     color: #FFFFFF;
+}
+
+.detalhe{
+    border-radius: 15px;
+    padding: 10px;
+    background-color: #227225;
+    margin-right: 200px;
 }
