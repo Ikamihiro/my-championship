@@ -103,7 +103,7 @@ ul li a{
     }
 }
 footer div{
-    background-color: #519154;
+    background-color: #227225;
     height: 50px;
 }
 .textFooter{
@@ -115,4 +115,8 @@ footer div{
     padding: 10px;
     background-color: #227225;
     margin-right: 200px;
+}
+
+label{
+    font-weight: bold;
 }
