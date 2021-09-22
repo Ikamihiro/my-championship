@@ -1,0 +1,343 @@
+<div class="container-fluid">
+  <div class="card" id="card1">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-4 col-md-4">
+          <p class="textCard">Partidas</p>
+        </div>
+        <div class="col-4 col-md-4">
+          <select
+            class="form-select btn-primary"
+            aria-label="Default select example"
+            style="background-color: #227225; border-radius: 20px;"
+          >
+            <option selected>Campeonato</option>
+            <option value="1">Campeonato A</option>
+            <option value="2">Campeonato B</option>
+            <option value="3">Copa A</option>
+          </select>
+        </div>
+        <div class="col-4 col-md-4">
+          <a href="edicao.html" class="btn-primary">
+            <p
+              class="textBotao"
+              style="background-color: #227225; border-radius: 20px;"
+            >Gerar Partidas
+            </p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br />
+  <br />
+  <div class="card" id="card1">
+    <ul class="list-group">
+      <li class="list-group-item">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-8 col-md-8">
+              <p class="textCard">timeX x timeY - Estadio 00:00h</p>
+            </div>
+            <div class="col-4 col-md-4">
+              <!--<a href="edicao.html" class="btn-primary">
+                                    <p class="textBotao" style="background-color: #227225; border-radius: 20px;">Visualizar</p>
+                                </a>-->
+              <!-- Button trigger modal -->
+              <button
+                type="button"
+                class="btn-primary detalhe"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+                s
+              >
+                Detalhes
+              </button>
+
+              <!-- Modal -->
+              <div
+                class="modal fade"
+                id="exampleModal"
+                tabindex="-1"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Modal
+                        title: TimeX x TimeY - Estadio 00:00h</h5>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <div class="modal-body">
+                      <form>
+                        <div class="form-group">
+                          <label for="formGroupExampleInput">Mandante</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="formGroupExampleInput"
+                            placeholder="TimeX"
+                          />
+                        </div>
+                        <div class="form-group">
+                          <label for="formGroupExampleInput2">Visitante</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="formGroupExampleInput2"
+                            placeholder="TimeY"
+                          />
+                        </div>
+                        <div class="form-group">
+                          <label for="formGroupExampleInput">Transmissão</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="formGroupExampleInput"
+                            placeholder="# TV - Cleber Machado (Narrador)"
+                          />
+                        </div>
+                        <div class="form-group">
+                          <label for="formGroupExampleInput2">Resultado</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="formGroupExampleInput2"
+                            placeholder="TimeX 0 x 0 Timey"
+                          />
+                        </div>
+                        <div class="form-group">
+                          <label for="formGroupExampleInput2">Arbitragem</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="formGroupExampleInput2"
+                            placeholder="# Fulano - Ciclano - Beltrano"
+                          />
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                      >Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-8 col-md-8">
+              <p class="textCard">timeX x timeY - Estadio 00:00h</p>
+            </div>
+            <div class="col-4 col-md-4">
+              <!-- Button trigger modal -->
+              <button
+                type="button"
+                class="btn-primary detalhe"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+              >
+                Detalhes
+              </button>
+
+              <!-- Modal -->
+              <div
+                class="modal fade"
+                id="exampleModal"
+                tabindex="-1"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <div class="modal-body">
+                      <form>
+                        <div class="form-group">
+                          <label for="formGroupExampleInput">Mandante</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="formGroupExampleInput"
+                            placeholder="TimeX"
+                          />
+                        </div>
+                        <div class="form-group">
+                          <label for="formGroupExampleInput2">Visitante</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="formGroupExampleInput2"
+                            placeholder="TimeY"
+                          />
+                        </div>
+                        <div class="form-group">
+                          <label for="formGroupExampleInput">Transmissão</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="formGroupExampleInput"
+                            placeholder="# TV - Cleber Machado (Narrador)"
+                          />
+                        </div>
+                        <div class="form-group">
+                          <label for="formGroupExampleInput2">Resultado</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="formGroupExampleInput2"
+                            placeholder="TimeX 0 x 0 Timey"
+                          />
+                        </div>
+                        <div class="form-group">
+                          <label for="formGroupExampleInput2">Arbitragem</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="formGroupExampleInput2"
+                            placeholder="# Fulano - Ciclano - Beltrano"
+                          />
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                      >Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-8 col-md-8">
+              <p class="textCard">timeX x timeY - Estadio 00:00h</p>
+            </div>
+            <div class="col-4 col-md-4">
+              <!-- Button trigger modal -->
+              <button
+                type="button"
+                class="btn-primary detalhe"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+              >
+                Detalhes
+              </button>
+
+              <!-- Modal -->
+              <div
+                class="modal fade"
+                id="exampleModal"
+                tabindex="-1"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <div class="modal-body">
+                      <form>
+                        <div class="form-group">
+                          <label for="formGroupExampleInput">Mandante</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="formGroupExampleInput"
+                            placeholder="TimeX"
+                          />
+                        </div>
+                        <div class="form-group">
+                          <label for="formGroupExampleInput2">Visitante</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="formGroupExampleInput2"
+                            placeholder="TimeY"
+                          />
+                        </div>
+                        <div class="form-group">
+                          <label for="formGroupExampleInput">Transmissão</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="formGroupExampleInput"
+                            placeholder="# TV - Cleber Machado (Narrador)"
+                          />
+                        </div>
+                        <div class="form-group">
+                          <label for="formGroupExampleInput2">Resultado</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="formGroupExampleInput2"
+                            placeholder="TimeX 0 x 0 Timey"
+                          />
+                        </div>
+                        <div class="form-group">
+                          <label for="formGroupExampleInput2">Arbitragem</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="formGroupExampleInput2"
+                            placeholder="# Fulano - Ciclano - Beltrano"
+                          />
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                      >Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
