@@ -6,7 +6,7 @@ use App\Rules\ExistsRule;
 use Lib\Validation\Form;
 use Lib\Validation\Rules\RequiredRule;
 
-class UniformeForm extends Form
+class ComissaoTecnicaForm extends Form
 {
     public static function make(array $data)
     {
