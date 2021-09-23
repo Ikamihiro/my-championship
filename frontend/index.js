@@ -22,6 +22,10 @@ app.get("/partidas", function (req, res) {
   res.render("partidas");
 });
 
+app.get("/campeonatos", function (req, res) {
+  res.render("campeonatos");
+});
+
 app.listen(port);
 
 console.log("Server started at http://localhost:" + port);
