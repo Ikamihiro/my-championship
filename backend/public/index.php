@@ -20,7 +20,9 @@ use App\Controllers\Api\{
     UniformeController,
     ArbitroController,
     CorController,
-    ArbitragemController
+    ArbitragemController,
+    ComissaoTecnicaController,
+    MembroController
 };
 use App\Controllers\HomeController;
 use App\Middlewares\AuthMiddleware;
@@ -38,8 +40,10 @@ $app->router->apiRoutes('/api/cidade', CidadeController::class, AuthMiddleware::
 $app->router->apiRoutes('/api/cor', CorController::class, AuthMiddleware::class);
 $app->router->apiRoutes('/api/time', TimeController::class, AuthMiddleware::class);
 $app->router->apiRoutes('/api/presidente', PresidenteController::class, AuthMiddleware::class);
-$app->router->apiRoutes('/api/estadios', EstadioController::class, AuthMiddleware::class);
-$app->router->apiRoutes('/api/uniformes', UniformeController::class, AuthMiddleware::class);
+$app->router->apiRoutes('/api/estadio', EstadioController::class, AuthMiddleware::class);
+$app->router->apiRoutes('/api/uniforme', UniformeController::class, AuthMiddleware::class);
+$app->router->apiRoutes('/api/comissao', ComissaoTecnicaController::class, AuthMiddleware::class);
+$app->router->apiRoutes('/api/membro', MembroController::class, AuthMiddleware::class);
 $app->router->apiRoutes('/api/arbitro', ArbitroController::class, AuthMiddleware::class);
 $app->router->apiRoutes('/api/arbitragem', ArbitragemController::class, AuthMiddleware::class);
 
