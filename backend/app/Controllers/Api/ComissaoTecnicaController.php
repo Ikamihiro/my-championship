@@ -2,6 +2,7 @@
 
 namespace App\Controllers\Api;
 
+use App\Forms\ComissaoTecnica\ComissaoTecnicaForm;
 use App\Models\ComissaoTecnica;
 use Lib\Http\Controller;
 use Lib\Http\Request;
@@ -17,27 +18,29 @@ class ComissaoTecnicaController extends Controller
 
     public function create(Request $request, Response $response)
     {
-        // $form = UniformeForm::make($request->getFormJSON());
+        $form = ComissaoTecnicaForm::make($request->getFormJSON());
 
-        // if (!$form->validate()) {
-        //     return $response->badRequest($form->getErrors());
-        // }
+        if (!$form->validate()) {
+            return $response->badRequest($form->getErrors());
+        }
 
-        // $uniforme = Uniforme::create($request->getFormJSON());
-        // return $response->json($uniforme);
+        $comissao = ComissaoTecnica::create($request->getFormJSON());
+
+        return $response->json($comissao);
     }
 
     public function update(Request $request, Response $response, int $id)
     {
-        // $uniforme = Uniforme::findOrFail($id);
-        // $form = UniformeForm::make($request->getFormJSON());
+        $comissao = ComissaoTecnica::findOrFail($id);
+        $form = ComissaoTecnicaForm::make($request->getFormJSON());
 
-        // if (!$form->validate()) {
-        //     return $response->badRequest($form->getErrors());
-        // }
+        if (!$form->validate()) {
+            return $response->badRequest($form->getErrors());
+        }
 
-        // $uniforme->update($request->getFormJSON());
-        // return $response->json($uniforme);
+        $comissao->update($request->getFormJSON());
+
+        return $response->json($comissao);
     }
 
     public function show(Request $request, Response $response, int $id)

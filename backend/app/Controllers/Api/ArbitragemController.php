@@ -18,7 +18,7 @@ class ArbitragemController extends Controller
 
     public function create(Request $request, Response $response)
     {
-        /**$form = ArbitragemForm::make($request->getFormJSON());
+        $form = ArbitragemForm::make($request->getFormJSON());
 
         if (!$form->validate()) {
             return $response->badRequest($form->getErrors());
@@ -26,12 +26,12 @@ class ArbitragemController extends Controller
 
         $arbitragem = Arbitragem::create($request->getFormJSON());
 
-        return $response->json($arbitragem);**/
+        return $response->json($arbitragem);
     }
 
     public function update(Request $request, Response $response, int $id)
     {
-        /*$arbitragem = Arbitragem::findOrFail($id);
+        $arbitragem = Arbitragem::findOrFail($id);
         $form = ArbitragemForm::make($request->getFormJSON());
 
         if (!$form->validate()) {
@@ -40,7 +40,7 @@ class ArbitragemController extends Controller
 
         $arbitragem->update($request->getFormJSON());
 
-        return $response->json($arbitragem);*/
+        return $response->json($arbitragem);
     }
 
     public function show(Request $request, Response $response, int $id)
