@@ -1,42 +1,47 @@
-<div class="card">
-  <div class="card-header">
-    <div class="d-flex justify-content-between align-items-center">
-      <h5 class="card-title mb-0">Partidas</h5>
-      <div class="d-flex justify-content-end align-items-center">
-        <a href="/" class="btn btn-default text-white">
-          Gerar Partidas
-        </a>
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <div class="d-flex justify-content-between align-items-center">
+          <h5 class="card-title mb-0">Partidas</h5>
+          <div class="d-flex justify-content-end align-items-center">
+            <a href="/" class="btn btn-default text-white">
+              Gerar Partidas
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-12 col-md-6 pb-1 pb-md-0">
+            <input
+              type="text"
+              name="time_search"
+              class="form-control"
+              placeholder="Digite o nome do time..."
+            />
+          </div>
+          <div class="col-12 col-md-6 pt-1 pt-md-0">
+            <select class="form-select" name="campeonato_search">
+              <option selected>Selecione um campeonato</option>
+              <option value="1">Campeonato A</option>
+              <option value="2">Campeonato B</option>
+              <option value="3">Copa A</option>
+            </select>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  <div class="card-body">
-    <div class="row">
-      <div class="col">
-        <input
-          type="text"
-          name="time_search"
-          class="form-control"
-          placeholder="Digite o nome do time..."
-        />
-      </div>
-      <div class="col">
-        <select class="form-select" name="campeonato_search">
-          <option selected>Selecione um campeonato</option>
-          <option value="1">Campeonato A</option>
-          <option value="2">Campeonato B</option>
-          <option value="3">Copa A</option>
-        </select>
-      </div>
-    </div>
-  </div>
-  <div class="card-body border-top p-2">
-    <table class="table table-bordered table-hover mb-1">
+  <div class="col-12 pt-2 overflow-auto">
+    <table class="table table-bordered table-hover table-fixed mb-1">
       <thead>
         <tr>
-          <th scope="col">Mandante</th>
-          <th scope="col">Visitante</th>
-          <th scope="col">Horário</th>
-          <th scope="col">Estádio</th>
+          <th>Mandante</th>
+          <th>Visitante</th>
+          <th>Horário</th>
+          <th>Estádio</th>
+          <th width="10%">Ações</th>
         </tr>
       </thead>
       <tbody>
@@ -45,20 +50,131 @@
           <td>Otto</td>
           <td>@mdo</td>
           <td>@mdo</td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-default text-white"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+            >
+              Detalhes
+            </button>
+          </td>
         </tr>
         <tr>
           <td>Jacob</td>
           <td>Thornton</td>
           <td>@fat</td>
           <td>@mdo</td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-default text-white"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+            >
+              Detalhes
+            </button>
+          </td>
         </tr>
         <tr>
           <td>@twitter</td>
           <td>@twitter</td>
           <td>@twitter</td>
           <td>@mdo</td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-default text-white"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+            >
+              Detalhes
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          Partida: TimeX x TimeY - Estadio 00:00h
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="formGroupExampleInput">Mandante</label>
+            <input
+              type="text"
+              class="form-control"
+              id="formGroupExampleInput"
+              placeholder="TimeX"
+            />
+          </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput2">Visitante</label>
+            <input
+              type="text"
+              class="form-control"
+              id="formGroupExampleInput2"
+              placeholder="TimeY"
+            />
+          </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput">Transmissão</label>
+            <input
+              type="text"
+              class="form-control"
+              id="formGroupExampleInput"
+              placeholder="# TV - Cleber Machado (Narrador)"
+            />
+          </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput2">Resultado</label>
+            <input
+              type="text"
+              class="form-control"
+              id="formGroupExampleInput2"
+              placeholder="TimeX 0 x 0 Timey"
+            />
+          </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput2">Arbitragem</label>
+            <input
+              type="text"
+              class="form-control"
+              id="formGroupExampleInput2"
+              placeholder="# Fulano - Ciclano - Beltrano"
+            />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+        >Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
   </div>
 </div>
