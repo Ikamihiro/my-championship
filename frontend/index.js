@@ -18,6 +18,18 @@ app.get("/", function (req, res) {
   res.render("index");
 });
 
+app.get("/login", function (req, res) {
+  res.render("login", {
+    layout: 'auth',
+  });
+});
+
+app.get("/register", function (req, res) {
+  res.render("register", {
+    layout: 'auth',
+  });
+});
+
 app.get("/partidas", function (req, res) {
   res.render("partidas");
 });

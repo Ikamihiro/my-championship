@@ -10,6 +10,8 @@ require_once __DIR__ . '/../config/helpers.php';
 require_once __DIR__ . '/../config/env.php';
 require_once __DIR__ . '/../config/database.php';
 
+header("Access-Control-Allow-Origin: *");
+
 use App\Controllers\Api\{
     AuthController,
     CidadeController,
