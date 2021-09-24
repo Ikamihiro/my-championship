@@ -2,6 +2,7 @@
 
 namespace Lib;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Lib\Exceptions\AuthorizationException;
 use Lib\Exceptions\IncorretPasswordException;
 use Lib\Http\Controller;
@@ -54,6 +55,12 @@ class Application
             }
 
             echo call_user_func($callback, $this->request, $this->response, ...$this->router->getParams());
+        } catch (ModelNotFoundException $th) {
+            echo $this->response->json([
+                'exception' => get_class($th),
+                'error' => $th->getMessage(),
+            ], 404);
+            die();
         } catch (IncorretPasswordException $th) {
             echo $this->response->json([
                 'exception' => get_class($th),
