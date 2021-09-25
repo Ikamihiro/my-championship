@@ -1,0 +1,90 @@
+<div class="row justify-content-center">
+  <div class="col-12 col-md-6">
+    <form id="formRegister" method="POST">
+      <div id="message"></div>
+      <div class="mb-3" id="nameGroup">
+        <label class="form-label">Name</label>
+        <input type="text" class="form-control" id="name" name="name">
+      </div>
+      <div class="mb-3" id="documentGroup">
+        <label class="form-label">Document</label>
+        <input type="text" class="form-control" id="document" name="document">
+      </div>
+      <div class="mb-3" id="emailGroup">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" name="email">
+      </div>
+      <div class="mb-3" id="passwordGroup">
+        <label class="form-label">Password</label>
+        <input type="password" class="form-control" id="password" name="password">
+      </div>
+      <div class="mb-3">
+        <button type="submit" id="btnSubmit" class="btn btn-default text-white">
+          Cadastrar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{{#section "scripts"}}
+<script>
+  $(document).ready(function () {
+    $("#formRegister").on('submit', function (event) {
+      let user = {
+        email: $("#email").val(),
+        name: $("#name").val(),
+        document: $("#document").val(),
+        password: $("#password").val(),
+      }
+
+      $.ajax({
+        type: "POST",
+        url: "http://localhost:3456/register",
+        data: JSON.stringify(user),
+        dataType: "json",
+        success: function (data) {
+          $(location).attr('href', '/register');
+          $("#message").append(
+            '<div class="alert alert-success">Usuário cadastrado com sucesso! Agora é só fazer login</div>'
+          );
+        },
+        error: function (err) {
+          if (err.status == 400) {
+            let errorMessages = err.responseJSON.errors;
+
+            if (errorMessages.name.length > 0) {
+              $("#name").addClass("is-invalid");
+              for (let error of errorMessages.name) {
+                $("#nameGroup").append(
+                  '<div class="invalid-feedback">' + error + '</div>'
+                );
+              }
+            }
+
+            if (errorMessages.document.length > 0) {
+              $("#document").addClass("is-invalid");
+              for (let error of errorMessages.document) {
+                $("#documentGroup").append(
+                  '<div class="invalid-feedback">' + error + '</div>'
+                );
+              }
+            }
+
+            if (errorMessages.email.length > 0) {
+              $("#email").addClass("is-invalid");
+              for (let error of errorMessages.email) {
+                $("#emailGroup").append(
+                  '<div class="invalid-feedback">' + error + '</div>'
+                );
+              }
+            }
+          }
+        },
+      });
+
+      event.preventDefault();
+    });
+  });
+</script>
+{{/section}}

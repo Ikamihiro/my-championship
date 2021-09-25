@@ -8,10 +8,10 @@ class RequiredRule extends Rule
 {
     public function validate($field): bool
     {
-        $validation = isset($field);
+        $validation = isset($field) && !empty($field);
 
         if (!$validation) {
-            $this->setError("Value cannot be null!");
+            $this->setError("Campo obrigatório!");
         }
 
         return $validation;

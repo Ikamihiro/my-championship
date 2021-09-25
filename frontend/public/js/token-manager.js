@@ -13,4 +13,8 @@ const TokenManager = {
     localStorage.setItem("token", valueEncoded);
     return true;
   },
+
+  clearToken: () => {
+    localStorage.removeItem("token");
+  },
 };
