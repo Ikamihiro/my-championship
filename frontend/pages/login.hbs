@@ -34,7 +34,8 @@
         data: JSON.stringify(user),
         dataType: "json",
         success: function (data) {
-          console.log(data);
+          TokenManager.setToken(data.token);
+          $(location).attr('href', '/');
         },
         error: function (error) {
           if (error.status == 404) {
