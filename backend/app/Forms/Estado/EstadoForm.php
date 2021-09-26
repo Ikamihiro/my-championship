@@ -11,7 +11,7 @@ class EstadoForm extends Form
     {
         $rules = [
             'nome' => [new RequiredRule],
-            'sigle' => [new RequiredRule]
+            'sigla' => [new RequiredRule]
         ];
 
         return new self($data, $rules);

@@ -12,7 +12,7 @@ class TimeController extends Controller
 {
     public function index(Request $request, Response $response)
     {
-        $times = Time::all();
+        $times = Time::with('cores')->get();
         return $response->json($times);
     }
 
@@ -25,6 +25,9 @@ class TimeController extends Controller
         }
 
         $time = Time::create($request->getFormJSON());
+        if ($request->getFormJSON()['cores']) {
+            $time->cores()->sync($request->getFormJSON()['cores']);
+        }
 
         return $response->json($time);
     }
@@ -39,13 +42,16 @@ class TimeController extends Controller
         }
 
         $time->update($request->getFormJSON());
+        if ($request->getFormJSON()['cores']) {
+            $time->cores()->sync($request->getFormJSON()['cores']);
+        }
 
-        return $response->json($time);
+        return $response->json($time->load('cores'));
     }
 
     public function show(Request $request, Response $response, int $id)
     {
-        $time = Time::findOrFail($id);
+        $time = Time::with('cores')->where('id', $id)->firstOrFail($id);
         return $response->json($time);
     }
 
