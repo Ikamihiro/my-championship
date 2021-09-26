@@ -30,6 +30,10 @@ app.get("/register", function (req, res) {
   });
 });
 
+app.get("/edicao", function (req, res) {
+  res.render("Edicao");
+});
+
 app.get("/partidas", function (req, res) {
   res.render("partidas");
 });

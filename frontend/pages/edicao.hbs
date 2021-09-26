@@ -1,0 +1,438 @@
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <div class="d-flex justify-content-between align-items-center">
+          <h5 class="card-title mb-0">Presidente</h5>
+          <button
+            type="button"
+            class="btn btn-default text-white"
+            data-bs-toggle="modal"
+            data-bs-target="#modalPresidente"
+          >
+            Editar
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="d-flex justify-content-between align-items-center">
+          <h5 class="card-title mb-0">Cores</h5>
+          <button
+            type="button"
+            class="btn btn-default text-white"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal2"
+          >
+            Editar
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="d-flex justify-content-between align-items-center">
+          <h5 class="card-title mb-0">Estádio</h5>
+          <button
+            type="button"
+            class="btn btn-default text-white"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal3"
+          >
+            Editar
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="d-flex justify-content-between align-items-center">
+          <h5 class="card-title mb-0">Uniformes</h5>
+          <button
+            type="button"
+            class="btn btn-default text-white"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal4"
+          >
+            Editar
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="d-flex justify-content-between align-items-center">
+          <h5 class="card-title mb-0">Comissão Técnica</h5>
+          <button
+            type="button"
+            class="btn btn-default text-white"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal5"
+          >
+            Editar
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="d-flex justify-content-between align-items-center">
+          <h5 class="card-title mb-0">Plantel</h5>
+          <button
+            type="button"
+            class="btn btn-default text-white"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal6"
+          >
+            Editar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--modal de edição de Plantel-->
+<div
+  class="modal fade"
+  id="exampleModal6"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel6"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel6">
+          Plantel
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="formGroupExampleInput61">Temporada</label>
+            <input
+              type="text"
+              class="form-control"
+              id="formGroupExampleInput31"
+              placeholder="xxxx"
+            />
+          </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput62">Time</label>
+            <input
+              type="text"
+              class="form-control"
+              id="formGroupExampleInput31"
+              placeholder="xxx"
+            />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+        >Fechar</button>
+        <button type="button" class="btn btn-primary">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--modal de edição de Comissão Técnica-->
+<div
+  class="modal fade"
+  id="exampleModal5"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel5"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel5">
+          Comissão Técnica
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="formGroupExampleInput51">Membros disponíveis</label>
+            <select class="form-select" name="campeonato_search">
+              <option selected>Membros disponíveis</option>
+              <option value="1">Fulano</option>
+              <option value="2">Beltrano</option>
+              <option value="3">Ciclano</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+        >Fechar</button>
+        <button type="button" class="btn btn-primary">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--modal de edição de Uniformes-->
+<div
+  class="modal fade"
+  id="exampleModal4"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel4"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel4">
+          Uniformes
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="formGroupExampleInput41">Temporada</label>
+            <input
+              type="text"
+              class="form-control"
+              id="formGroupExampleInput41"
+              placeholder="xxxx"
+            />
+          </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput42">Modelo Principal</label>
+            <input
+              type="text"
+              class="form-control"
+              id="formGroupExampleInput42"
+              placeholder="xxx"
+            />
+          </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput43">Modelo secundário</label>
+            <input
+              type="text"
+              class="form-control"
+              id="formGroupExampleInput43"
+              placeholder="xxx"
+            />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+        >Fechar</button>
+        <button type="button" class="btn btn-primary">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--modal de edição de Estádio-->
+<div
+  class="modal fade"
+  id="exampleModal3"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel3"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel3">
+          Estádio
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="formGroupExampleInput31">Nome</label>
+            <input
+              type="text"
+              class="form-control"
+              id="formGroupExampleInput31"
+              placeholder="Maracanã"
+            />
+          </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput32">Capacidade total</label>
+            <input
+              type="text"
+              class="form-control"
+              id="formGroupExampleInput32"
+              placeholder="xxx"
+            />
+          </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput33">Data de construção</label>
+            <input
+              type="text"
+              class="form-control"
+              id="formGroupExampleInput33"
+              placeholder="xx/xx/xxxx"
+            />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+        >Fechar</button>
+        <button type="button" class="btn btn-primary">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--modal de edição de Cores-->
+<div
+  class="modal fade"
+  id="exampleModal2"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel2"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel2">
+          Cores
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="formGroupExampleInput21">Nome</label>
+            <input
+              type="text"
+              class="form-control"
+              id="formGroupExampleInput21"
+              placeholder="Azul e branco"
+            />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+        >Fechar</button>
+        <button type="button" class="btn btn-primary">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--modal de edição de Presidente-->
+<div
+  class="modal fade"
+  id="modalPresidente"
+  tabindex="-1"
+  aria-labelledby="modalPresidenteLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalPresidenteLabel">
+          Presidente
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="formGroupPresidenteInputNome">Nome</label>
+            <input
+              type="text"
+              class="form-control"
+              id="formGroupPresidenteInputNome"
+              placeholder="Fulano de Tal"
+            />
+          </div>
+          <div class="form-group">
+            <label for="formGroupPresidenteInicioMandato">Início do mandato</label>
+            <input
+              type="text"
+              class="form-control"
+              id="formGroupPresidenteInicioMandato"
+              placeholder="12/2019"
+            />
+          </div>
+          <div class="form-group">
+            <label for="formGroupPresidenteFimMandato">Fim do mandato</label>
+            <input
+              type="text"
+              class="form-control"
+              id="formGroupPresidenteFimMandato"
+              placeholder="12/2021"
+            />
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+        >Fechar</button>
+        <button type="button" class="btn btn-primary">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  $(document).ready(function() {
+      $('.js-example-basic-multiple').select2();
+  });
+</script>
+
