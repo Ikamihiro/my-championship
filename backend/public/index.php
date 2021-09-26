@@ -25,8 +25,11 @@ use App\Controllers\Api\{
     ArbitroController,
     CorController,
     ArbitragemController,
+    CampeaoController,
+    CampeonatoController,
     ComissaoTecnicaController,
-    MembroController
+    MembroController,
+    PatrocinadorController
 };
 use App\Controllers\HomeController;
 use App\Middlewares\AuthMiddleware;
@@ -50,5 +53,8 @@ $app->router->apiRoutes('/api/comissao', ComissaoTecnicaController::class, AuthM
 $app->router->apiRoutes('/api/membro', MembroController::class, AuthMiddleware::class);
 $app->router->apiRoutes('/api/arbitro', ArbitroController::class, AuthMiddleware::class);
 $app->router->apiRoutes('/api/arbitragem', ArbitragemController::class, AuthMiddleware::class);
+$app->router->apiRoutes('/api/campeonato', CampeonatoController::class, AuthMiddleware::class);
+$app->router->apiRoutes('/api/patrocinador', PatrocinadorController::class, AuthMiddleware::class);
+$app->router->apiRoutes('/api/campeao', CampeaoController::class, AuthMiddleware::class);
 
 $app->run();
