@@ -1,7 +1,7 @@
-# MyChampionship Backend
+# MyChampionship Frontend
 
 ### Executando o projeto
-Para executar o projeto, abra o arquivo:
+Para executar o projeto, rode os seguintes comandos:
 ```
-index.html
+npm install && npm run dev
 ```
