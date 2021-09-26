@@ -12,7 +12,8 @@ class EstadioController extends Controller
 {
     public function index(Request $request, Response $response)
     {
-        $estadios = Estadio::all();
+        $estadios = Estadio::orderBy('created_at', 'desc')->get();
+
         return $response->json($estadios);
     }
 
@@ -23,7 +24,7 @@ class EstadioController extends Controller
         if (!$form->validate()) {
             return $response->badRequest($form->getErrors());
         }
-        
+
         $estadio = Estadio::create($request->getFormJSON());
         return $response->json($estadio);
     }
@@ -52,5 +53,12 @@ class EstadioController extends Controller
         $estadio = Estadio::findOrFail($id);
         $estadio->delete();
         return $response->noContent();
+    }
+
+    public function getByTime(Request $request, Response $response, int $timeId)
+    {
+        $estadio = Estadio::where('time_id', $timeId)->first();
+
+        return $response->json($estadio);
     }
 }

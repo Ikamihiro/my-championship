@@ -14,7 +14,8 @@ class Estadio extends Model
     protected $fillable = [
         'nome',
         'capacidade_total',
-        'data_construcao'
+        'data_construcao',
+        'time_id',
     ];
 
     protected $casts = [

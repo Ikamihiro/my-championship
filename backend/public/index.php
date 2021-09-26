@@ -59,6 +59,10 @@ $app->router->apiRoutes('/api/campeonato', CampeonatoController::class, AuthMidd
 $app->router->apiRoutes('/api/patrocinador', PatrocinadorController::class, AuthMiddleware::class);
 $app->router->apiRoutes('/api/campeao', CampeaoController::class, AuthMiddleware::class);
 
+$app->router->get('/api/estadio/by_time/{timeId}', [
+    EstadioController::class, 'getByTime',
+])->addMiddleware(AuthMiddleware::class);
+
 $app->router->post('/api/campeonato/generate_partidas/{id}', [
     CampeonatoController::class, 'generatePartidas',
 ])->addMiddleware(AuthMiddleware::class);

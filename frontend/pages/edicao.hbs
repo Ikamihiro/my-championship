@@ -1,90 +1,95 @@
+{{#section "styles"}}
+{{!-- --}}
+{{/section}}
+
+<div id="timeId" data-timeid="{{time}}"></div>
+
 <div class="row">
   <div class="col-12">
+    <div id="message"></div>
+  </div>
+  <div class="col-12 col-lg-4 mb-2 mb-lg-2">
+    {{!-- Presidente --}}
     <div class="card">
       <div class="card-header">
         <div class="d-flex justify-content-between align-items-center">
           <h5 class="card-title mb-0">Presidente</h5>
-          <button
-            type="button"
-            class="btn btn-default text-white"
-            data-bs-toggle="modal"
-            data-bs-target="#modalPresidente"
-          >
+          <button type="button" class="btn btn-default text-white" data-bs-toggle="modal"
+            data-bs-target="#modalPresidente">
             Editar
           </button>
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="col-12 col-lg-4 mb-2 mb-lg-2">
+    {{!-- Cores --}}
     <div class="card">
       <div class="card-header">
         <div class="d-flex justify-content-between align-items-center">
           <h5 class="card-title mb-0">Cores</h5>
-          <button
-            type="button"
-            class="btn btn-default text-white"
-            data-bs-toggle="modal"
-            data-bs-target="#exampleModal2"
-          >
+          <button type="button" class="btn btn-default text-white" data-bs-toggle="modal" data-bs-target="#modalCores">
             Editar
           </button>
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="col-12 col-lg-4 mb-2 mb-lg-2">
+    {{!-- Estádio --}}
     <div class="card">
       <div class="card-header">
         <div class="d-flex justify-content-between align-items-center">
           <h5 class="card-title mb-0">Estádio</h5>
-          <button
-            type="button"
-            class="btn btn-default text-white"
-            data-bs-toggle="modal"
-            data-bs-target="#exampleModal3"
-          >
+          <button type="button" class="btn btn-default text-white" data-bs-toggle="modal"
+            data-bs-target="#modalEstadio">
             Editar
           </button>
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="col-12 col-lg-4 mb-2 mb-lg-2">
+    {{!-- Uniformes --}}
     <div class="card">
       <div class="card-header">
         <div class="d-flex justify-content-between align-items-center">
           <h5 class="card-title mb-0">Uniformes</h5>
-          <button
-            type="button"
-            class="btn btn-default text-white"
-            data-bs-toggle="modal"
-            data-bs-target="#exampleModal4"
-          >
+          <button type="button" class="btn btn-default text-white" data-bs-toggle="modal"
+            data-bs-target="#modalUniformes">
             Editar
           </button>
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="col-12 col-lg-4 mb-2 mb-lg-2">
+    {{!-- Comissão técnica --}}
     <div class="card">
       <div class="card-header">
         <div class="d-flex justify-content-between align-items-center">
           <h5 class="card-title mb-0">Comissão Técnica</h5>
-          <button
-            type="button"
-            class="btn btn-default text-white"
-            data-bs-toggle="modal"
-            data-bs-target="#exampleModal5"
-          >
+          <button type="button" class="btn btn-default text-white" data-bs-toggle="modal"
+            data-bs-target="#modalComissaoTecnica">
             Editar
           </button>
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="col-12 col-lg-4 mb-2 mb-lg-2">
+    {{!-- Plantel --}}
     <div class="card">
       <div class="card-header">
         <div class="d-flex justify-content-between align-items-center">
           <h5 class="card-title mb-0">Plantel</h5>
-          <button
-            type="button"
-            class="btn btn-default text-white"
-            data-bs-toggle="modal"
-            data-bs-target="#exampleModal6"
-          >
+          <button type="button" class="btn btn-default text-white" data-bs-toggle="modal"
+            data-bs-target="#modalPlantel">
             Editar
           </button>
         </div>
@@ -94,54 +99,29 @@
 </div>
 
 <!--modal de edição de Plantel-->
-<div
-  class="modal fade"
-  id="exampleModal6"
-  tabindex="-1"
-  aria-labelledby="exampleModalLabel6"
-  aria-hidden="true"
->
+<div class="modal fade" id="modalPlantel" tabindex="-1" aria-labelledby="modalPlantelLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel6">
           Plantel
         </h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <form>
           <div class="form-group">
             <label for="formGroupExampleInput61">Temporada</label>
-            <input
-              type="text"
-              class="form-control"
-              id="formGroupExampleInput31"
-              placeholder="xxxx"
-            />
+            <input type="text" class="form-control" id="formGroupExampleInput31" placeholder="xxxx" />
           </div>
           <div class="form-group">
             <label for="formGroupExampleInput62">Time</label>
-            <input
-              type="text"
-              class="form-control"
-              id="formGroupExampleInput31"
-              placeholder="xxx"
-            />
+            <input type="text" class="form-control" id="formGroupExampleInput31" placeholder="xxx" />
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button
-          type="button"
-          class="btn btn-secondary"
-          data-bs-dismiss="modal"
-        >Fechar</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
         <button type="button" class="btn btn-primary">Salvar</button>
       </div>
     </div>
@@ -149,25 +129,15 @@
 </div>
 
 <!--modal de edição de Comissão Técnica-->
-<div
-  class="modal fade"
-  id="exampleModal5"
-  tabindex="-1"
-  aria-labelledby="exampleModalLabel5"
-  aria-hidden="true"
->
+<div class="modal fade" id="modalComissaoTecnica" tabindex="-1" aria-labelledby="modalComissaoTecnicaLabel"
+  aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel5">
           Comissão Técnica
         </h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <form>
@@ -183,11 +153,7 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button
-          type="button"
-          class="btn btn-secondary"
-          data-bs-dismiss="modal"
-        >Fechar</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
         <button type="button" class="btn btn-primary">Salvar</button>
       </div>
     </div>
@@ -195,63 +161,33 @@
 </div>
 
 <!--modal de edição de Uniformes-->
-<div
-  class="modal fade"
-  id="exampleModal4"
-  tabindex="-1"
-  aria-labelledby="exampleModalLabel4"
-  aria-hidden="true"
->
+<div class="modal fade" id="modalUniformes" tabindex="-1" aria-labelledby="modalUniformeslabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel4">
           Uniformes
         </h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <form>
           <div class="form-group">
             <label for="formGroupExampleInput41">Temporada</label>
-            <input
-              type="text"
-              class="form-control"
-              id="formGroupExampleInput41"
-              placeholder="xxxx"
-            />
+            <input type="text" class="form-control" id="formGroupExampleInput41" placeholder="xxxx" />
           </div>
           <div class="form-group">
             <label for="formGroupExampleInput42">Modelo Principal</label>
-            <input
-              type="text"
-              class="form-control"
-              id="formGroupExampleInput42"
-              placeholder="xxx"
-            />
+            <input type="text" class="form-control" id="formGroupExampleInput42" placeholder="xxx" />
           </div>
           <div class="form-group">
             <label for="formGroupExampleInput43">Modelo secundário</label>
-            <input
-              type="text"
-              class="form-control"
-              id="formGroupExampleInput43"
-              placeholder="xxx"
-            />
+            <input type="text" class="form-control" id="formGroupExampleInput43" placeholder="xxx" />
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button
-          type="button"
-          class="btn btn-secondary"
-          data-bs-dismiss="modal"
-        >Fechar</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
         <button type="button" class="btn btn-primary">Salvar</button>
       </div>
     </div>
@@ -259,109 +195,60 @@
 </div>
 
 <!--modal de edição de Estádio-->
-<div
-  class="modal fade"
-  id="exampleModal3"
-  tabindex="-1"
-  aria-labelledby="exampleModalLabel3"
-  aria-hidden="true"
->
+<div class="modal fade" id="modalEstadio" tabindex="-1" aria-labelledby="modalEstadioLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel3">
           Estádio
         </h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="formGroupExampleInput31">Nome</label>
-            <input
-              type="text"
-              class="form-control"
-              id="formGroupExampleInput31"
-              placeholder="Maracanã"
-            />
+        <form id="formNewEstadio" method="POST">
+          <input type="hidden" id="estadioId">
+          <div class="mb-3" id="nomeEstadioGroup">
+            <label class="form-label">Nome</label>
+            <input type="text" class="form-control" id="nomeEstadio" />
           </div>
-          <div class="form-group">
-            <label for="formGroupExampleInput32">Capacidade total</label>
-            <input
-              type="text"
-              class="form-control"
-              id="formGroupExampleInput32"
-              placeholder="xxx"
-            />
+          <div class="mb-3" id="capacidadeTotalEstadioGroup">
+            <label class="form-label">Capacidade total</label>
+            <input type="number" class="form-control" id="capacidadeTotalEstadio" />
           </div>
-          <div class="form-group">
-            <label for="formGroupExampleInput33">Data de construção</label>
-            <input
-              type="text"
-              class="form-control"
-              id="formGroupExampleInput33"
-              placeholder="xx/xx/xxxx"
-            />
+          <div class="mb-3">
+            <label class="form-label" id="dataConstrucaoEstadioGroup">Data de construção</label>
+            <input type="date" class="form-control" id="dataConstrucaoEstadio" />
+          </div>
+          <div class="d-flex justify-content-end w-100">
+            <button type="button" class="btn btn-secondary rounded" data-bs-dismiss="modal">Fechar</button>
+            <button type="submit" class="btn btn-default text-white ms-2">Salvar</button>
           </div>
         </form>
-      </div>
-      <div class="modal-footer">
-        <button
-          type="button"
-          class="btn btn-secondary"
-          data-bs-dismiss="modal"
-        >Fechar</button>
-        <button type="button" class="btn btn-primary">Salvar</button>
       </div>
     </div>
   </div>
 </div>
 
 <!--modal de edição de Cores-->
-<div
-  class="modal fade"
-  id="exampleModal2"
-  tabindex="-1"
-  aria-labelledby="exampleModalLabel2"
-  aria-hidden="true"
->
+<div class="modal fade" id="modalCores" tabindex="-1" aria-labelledby="modalCoresLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel2">
           Cores
         </h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <form>
           <div class="form-group">
             <label for="formGroupExampleInput21">Nome</label>
-            <input
-              type="text"
-              class="form-control"
-              id="formGroupExampleInput21"
-              placeholder="Azul e branco"
-            />
+            <input type="text" class="form-control" id="formGroupExampleInput21" placeholder="Azul e branco" />
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button
-          type="button"
-          class="btn btn-secondary"
-          data-bs-dismiss="modal"
-        >Fechar</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
         <button type="button" class="btn btn-primary">Salvar</button>
       </div>
     </div>
@@ -369,70 +256,132 @@
 </div>
 
 <!--modal de edição de Presidente-->
-<div
-  class="modal fade"
-  id="modalPresidente"
-  tabindex="-1"
-  aria-labelledby="modalPresidenteLabel"
-  aria-hidden="true"
->
+<div class="modal fade" id="modalPresidente" tabindex="-1" aria-labelledby="modalPresidenteLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="modalPresidenteLabel">
           Presidente
         </h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <form>
           <div class="form-group">
             <label for="formGroupPresidenteInputNome">Nome</label>
-            <input
-              type="text"
-              class="form-control"
-              id="formGroupPresidenteInputNome"
-              placeholder="Fulano de Tal"
-            />
+            <input type="text" class="form-control" id="formGroupPresidenteInputNome" placeholder="Fulano de Tal" />
           </div>
           <div class="form-group">
             <label for="formGroupPresidenteInicioMandato">Início do mandato</label>
-            <input
-              type="text"
-              class="form-control"
-              id="formGroupPresidenteInicioMandato"
-              placeholder="12/2019"
-            />
+            <input type="text" class="form-control" id="formGroupPresidenteInicioMandato" placeholder="12/2019" />
           </div>
           <div class="form-group">
             <label for="formGroupPresidenteFimMandato">Fim do mandato</label>
-            <input
-              type="text"
-              class="form-control"
-              id="formGroupPresidenteFimMandato"
-              placeholder="12/2021"
-            />
+            <input type="text" class="form-control" id="formGroupPresidenteFimMandato" placeholder="12/2021" />
         </form>
       </div>
       <div class="modal-footer">
-        <button
-          type="button"
-          class="btn btn-secondary"
-          data-bs-dismiss="modal"
-        >Fechar</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
         <button type="button" class="btn btn-primary">Salvar</button>
       </div>
     </div>
   </div>
 </div>
+
+{{#section "scripts"}}
 <script>
-  $(document).ready(function() {
-      $('.js-example-basic-multiple').select2();
+  $(document).ready(function () {
+    let timeId = $("#timeId").data("timeid");
+
+    $('#modalPlantel').on('show.bs.modal', function (event) { });
+
+    $('#modalComissaoTecnica').on('show.bs.modal', function (event) { });
+
+    $('#modalUniformes').on('show.bs.modal', function (event) { });
+
+    $('#modalEstadio').on('show.bs.modal', function (event) {
+      $.ajax({
+        url: "http://localhost:3456/api/estadio/by_time/" + timeId,
+        method: "GET",
+        dataType: "JSON",
+        headers: {
+          "Authorization": TokenManager.getToken(),
+        },
+        success: function (data) {
+          if (data !== null) {
+            $("#nomeEstadio").val(data.nome);
+            $("#capacidadeTotalEstadio").val(data.capacidade_total);
+            $("#dataConstrucaoEstadio").val(data.data_construcao);
+            $("#estadioId").val(data.id);
+          }
+        },
+        error: function (err) {
+          console.log(err);
+        },
+      });
+    });
+
+    $('#modalCores').on('show.bs.modal', function (event) { });
+
+    $('#modalPresidente').on('show.bs.modal', function (event) { });
+
+    $("#formNewEstadio").on('submit', function (event) {
+      let estadioId = $("#estadioId").val();
+
+      let estadio = {
+        nome: $("#nomeEstadio").val(),
+        capacidade_total: $("#capacidadeTotalEstadio").val(),
+        data_construcao: $("#dataConstrucaoEstadio").val(),
+        time_id: timeId,
+      }
+
+      $.ajax({
+        type: estadioId === "" ? "POST" : "PUT",
+        url: estadioId === "" ? "http://localhost:3456/api/estadio" : "http://localhost:3456/api/estadio/" + estadioId,
+        data: JSON.stringify(estadio),
+        dataType: "json",
+        headers: {
+          "Authorization": TokenManager.getToken(),
+        },
+        success: function (data) {
+          $(location).attr('href', '/edicao/' + timeId);
+        },
+        error: function (err) {
+          if (err.status == 400) {
+            let errorMessages = err.responseJSON.errors;
+
+            if (errorMessages.nome.length > 0) {
+              $("#nomeEstadio").addClass("is-invalid");
+              for (let error of errorMessages.nome) {
+                $("#nomeEstadioGroup").append(
+                  '<div class="invalid-feedback">' + error + '</div>'
+                );
+              }
+            }
+
+            if (errorMessages.capacidade_total.length > 0) {
+              $("#capacidadeTotalEstadio").addClass("is-invalid");
+              for (let error of errorMessages.capacidade_total) {
+                $("#capacidadeTotalEstadioGroup").append(
+                  '<div class="invalid-feedback">' + error + '</div>'
+                );
+              }
+            }
+
+            if (errorMessages.data_construcao.length > 0) {
+              $("#dataConstrucaoEstadio").addClass("is-invalid");
+              for (let error of errorMessages.data_construcao) {
+                $("#dataConstrucaoEstadioGroup").append(
+                  '<div class="invalid-feedback">' + error + '</div>'
+                );
+              }
+            }
+          }
+        },
+      });
+
+      event.preventDefault();
+    });
   });
 </script>
-
+{{/section}}

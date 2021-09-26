@@ -30,8 +30,12 @@ app.get("/register", function (req, res) {
   });
 });
 
-app.get("/edicao", function (req, res) {
-  res.render("Edicao");
+app.get("/edicao/:time", function (req, res) {
+  let time = req.params.time;
+
+  res.render("edicao", {
+    time: time,
+  });
 });
 
 app.get("/partidas", function (req, res) {
