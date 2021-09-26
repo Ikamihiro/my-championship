@@ -1,22 +1,109 @@
-<div class="card">
-  <div class="card-header">
-    <div class="d-flex justify-content-between align-items-center">
-      <h5 class="card-title mb-0">
-        #1 Corinthians
-      </h5>
-      <a href="/edicao" class="btn btn-default text-white">
-        Visualizar
-      </a>
+<form id="getTimesForm" action="http://localhost:3456/api/time" method="GET" hidden></form>
+
+<div class="row">
+  <div class="col-12">
+    <div id="message"></div>
+  </div>
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-stretch align-items-lg-center">
+          <h5 class="card-title mb-2 mb-lg-0">Times</h5>
+          <div class="d-flex flex-column flex-lg-row justify-content-end align-items-stretch align-items-lg-center">
+            <form id="formSearch" class="d-flex flex-column flex-lg-row align-items-stretch align-items-lg-center mb-0">
+              <input type="text" name="time_search" class="form-control mb-2 mb-lg-0"
+                placeholder="Digite o nome do time..." />
+              <button type="button" class="btn btn-default text-white mb-2 mb-lg-0 ms-0 ms-lg-2">
+                Buscar
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="card-body">
-    <div class="row">
-      Detalhes
-    </div>
+  <div class="col-12 pt-2 overflow-auto">
+    <table class="table table-bordered table-hover table-fixed mb-1">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Ano de Fundação</th>
+          <th>Cores</th>
+          <th>Estádio</th>
+          <th width="10%">Ações</th>
+        </tr>
+      </thead>
+      <tbody id="timesTableBody">
+      </tbody>
+    </table>
   </div>
 </div>
 
 {{#section "scripts"}}
 <script>
+  function getAllTimes() {
+    $.ajax({
+      url: "http://localhost:3456/api/time",
+      method: "GET",
+      dataType: "JSON",
+      headers: {
+        "Authorization": TokenManager.getToken(),
+      },
+      success: function (data) {
+        fillTable(data);
+      },
+      error: function (err) {
+        console.log(err);
+      },
+    });
+  }
+
+  function fillTable(times) {
+    let timesRows = '';
+
+    for (let time of times) {
+      let cores = time.cores.map(cor => cor.nome).join(", ");
+      let estadio = time.estadio !== null ? time.estadio.nome : '---';
+
+      timesRows += `
+        <tr>
+          <td>${time.nome}</td>
+          <td>${time.ano_fundacao}</td>
+          <td>${cores}</td>
+          <td>${estadio}</td>
+          <td>
+            <a href="/" class="btn btn-default text-white">
+              Detalhes
+            </a>
+          </td>
+        </tr>
+      `;
+    }
+
+    $("#timesTableBody").html(timesRows);
+  }
+
+  $(document).ready(function () {
+    $("#getTimesForm").on('submit', function (event) {
+      $.ajax({
+        url: "http://localhost:3456/api/time",
+        method: "GET",
+        dataType: "JSON",
+        headers: {
+          "Authorization": TokenManager.getToken(),
+        },
+        success: function (data) {
+          fillTable(data);
+        },
+        error: function (err) {
+          console.log(err);
+        },
+      });
+
+      event.preventDefault();
+    });
+
+    $("#getTimesForm").submit();
+  });
 </script>
 {{/section}}

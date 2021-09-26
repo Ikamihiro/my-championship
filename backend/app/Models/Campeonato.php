@@ -37,4 +37,9 @@ class Campeonato extends Model
             'patrocinador_id',
         );
     }
+
+    public function partidas()
+    {
+        return $this->hasMany(Partida::class, 'campeonato_id');
+    }
 }

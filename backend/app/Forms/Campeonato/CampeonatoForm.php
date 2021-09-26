@@ -1,17 +1,19 @@
 <?php
 
-namespace App\Forms\Estado;
+namespace App\Forms\Campeonato;
 
 use Lib\Validation\Form;
 use Lib\Validation\Rules\RequiredRule;
 
-class EstadoForm extends Form
+class CampeonatoForm extends Form
 {
     public static function make(array $data)
     {
         $rules = [
             'nome' => [new RequiredRule],
-            'sigla' => [new RequiredRule]
+            'temporada' => [new RequiredRule],
+            'tipo' => [new RequiredRule],
+            'premiacao_valor' => [new RequiredRule],
         ];
 
         return new self($data, $rules);
