@@ -34,6 +34,8 @@ use App\Controllers\Api\{
 use App\Controllers\HomeController;
 use App\Middlewares\AuthMiddleware;
 use Lib\Application;
+use Lib\Http\Request;
+use Lib\Http\Response;
 
 $app = new Application();
 
@@ -56,5 +58,9 @@ $app->router->apiRoutes('/api/arbitragem', ArbitragemController::class, AuthMidd
 $app->router->apiRoutes('/api/campeonato', CampeonatoController::class, AuthMiddleware::class);
 $app->router->apiRoutes('/api/patrocinador', PatrocinadorController::class, AuthMiddleware::class);
 $app->router->apiRoutes('/api/campeao', CampeaoController::class, AuthMiddleware::class);
+
+$app->router->post('/api/campeonato/generate_partidas/{id}', [
+    CampeonatoController::class, 'generatePartidas',
+])->addMiddleware(AuthMiddleware::class);
 
 $app->run();
