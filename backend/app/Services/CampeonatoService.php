@@ -54,7 +54,7 @@ class CampeonatoService
 
         foreach ($times as $timeCurrent) {
             foreach ($times as $time) {
-                if ($timeCurrent->id == $timeCurrent->id) continue;
+                if ($timeCurrent->id == $time->id) continue;
 
                 $partida = [
                     'mandante' => $timeCurrent->id,
