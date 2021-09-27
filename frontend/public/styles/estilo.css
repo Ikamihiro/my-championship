@@ -1,0 +1,76 @@
+.navbar-default {
+  background-color: #227225;
+}
+
+.nav-item .active {
+  color: #d3d3d3;
+}
+
+.nav-link {
+  color: white;
+}
+
+#card1 {
+  width: 75%;
+  left: 12.5%;
+  top: 3rem;
+  background: #ffffff;
+  border: 3px solid #404440;
+  border-radius: 20px;
+}
+
+.textCard {
+  /*height: 42px;
+    left: 101px;*/
+  text-align: left;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.8vw;
+  line-height: 60px;
+
+  color: #000000;
+}
+
+.btn-default {
+  background: #227225;
+  border-radius: .5rem;
+}
+
+.btn-default:hover {
+    background: #0a410c;
+}
+
+.textBotao {
+  text-align: center;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.8vw;
+  line-height: 35px;
+  color: #ffffff;
+}
+
+@media (max-width: 600px) {
+  .textCard {
+    font-size: 0.65em;
+  }
+  .textBotao {
+    font-size: 0.65em;
+  }
+}
+
+.footer {
+  background-color: #227225;
+}
+
+.detalhe {
+  border-radius: 15px;
+  padding: 10px;
+  background-color: #227225;
+  margin-right: 200px;
+}
+
+label {
+  font-weight: bold;
+}

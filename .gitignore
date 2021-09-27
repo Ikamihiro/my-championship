@@ -478,3 +478,5 @@ cache/
 .idea/
 
 .env
+
+node_modules
