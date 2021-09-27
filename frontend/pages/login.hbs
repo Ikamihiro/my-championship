@@ -37,23 +37,42 @@
           TokenManager.setToken(data.token);
           $(location).attr('href', '/');
         },
-        error: function (error) {
-          if (error.status == 404) {
+        error: function (err) {
+          if (err.status == 404) {
             $("#message").append(
               '<div class="alert alert-danger">Nenhum usuário cadastrado possui esse email!</div>'
             );
             return;
           }
 
-          if (error.status == 403) {
-            {{!-- $("#password").addClass("is-invalid");
-            $("#passwordGroup").append(
-              '<div class="invalid-feedback">Senha digitada está incorreta!</div>'
-            );
-            return; --}}
+          if (err.status == 403) {
             $("#message").append(
               '<div class="alert alert-danger">Senha digitada está incorreta!</div>'
             );
+            return;
+          }
+          
+          if (err.status == 400) {
+            let errorMessages = err.responseJSON.errors;
+            
+            if (errorMessages.email.length > 0) {
+              $("#email").addClass("is-invalid");
+              for (let error of errorMessages.email) {
+                $("#emailGroup").append(
+                  '<div class="invalid-feedback">' + error + '</div>'
+                );
+              }
+            }
+            
+            if (errorMessages.password.length > 0) {
+              $("#password").addClass("is-invalid");
+              for (let error of errorMessages.password) {
+                $("#passwordGroup").append(
+                  '<div class="invalid-feedback">' + error + '</div>'
+                );
+              }
+            }
+            
             return;
           }
         },
