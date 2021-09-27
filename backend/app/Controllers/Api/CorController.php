@@ -18,7 +18,7 @@ class CorController extends Controller
 
     public function create(Request $request, Response $response)
     {
-        $form = CorForm::make($request->getFormJSON());
+        $cor = CorForm::make($request->getFormJSON());
 
         if (!$form->validate()) {
             return $response->badRequest($form->getErrors());
