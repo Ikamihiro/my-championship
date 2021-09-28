@@ -54,11 +54,4 @@ class EstadioController extends Controller
         $estadio->delete();
         return $response->noContent();
     }
-
-    public function getByTime(Request $request, Response $response, int $timeId)
-    {
-        $estadio = Estadio::where('time_id', $timeId)->first();
-
-        return $response->json($estadio);
-    }
 }

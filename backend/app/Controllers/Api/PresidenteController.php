@@ -33,6 +33,7 @@ class PresidenteController extends Controller
         if (!$form->validate()) return $response->badRequest($form->getErrors());
 
         $presidente->update($request->getFormJSON());
+        return $response->json($presidente->load('time'));
     }
 
     public function show(Request $request, Response $response, int $id)

@@ -266,18 +266,19 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form id="formPresidente">
-          <div class="form-group" id="nomePresidenteGroup">
+        <form id="formPresidente" method="POST">
+          <input type="hidden" name="presidenteId" id="presidenteId">
+          <div class="mb-3" id="nomePresidenteGroup">
             <label class="form-label">Nome</label>
             <input type="text" class="form-control" id="nomePresidente" />
           </div>
-          <div class="form-group" id="inicioMandatoPresidenteGroup">
+          <div class="mb-3" id="inicioMandatoPresidenteGroup">
             <label class="form-label">Início do mandato</label>
             <input type="date" class="form-control" id="inicioMandatoPresidente" />
           </div>
-          <div class="form-group" id="fimMandatoPresidente">
+          <div class="mb-3" id="fimMandatoPresidenteGroup">
             <label class="form-label">Fim do mandato</label>
-            <input type="text" class="form-control" id="fimMandatoPresidente" />
+            <input type="date" class="form-control" id="fimMandatoPresidente" />
           </div>
           <div class="d-flex justify-content-end w-100">
             <button type="button" class="btn btn-secondary rounded" data-bs-dismiss="modal">Fechar</button>
@@ -302,7 +303,7 @@
 
     $('#modalEstadio').on('show.bs.modal', function (event) {
       $.ajax({
-        url: "http://localhost:3456/api/estadio/by_time/" + timeId,
+        url: "http://localhost:3456/api/time/estadio/" + timeId,
         method: "GET",
         dataType: "JSON",
         headers: {
@@ -310,6 +311,8 @@
         },
         success: function (data) {
           if (data !== null) {
+            let dataConstrucao = new Date(data.data_construcao);
+
             $("#nomeEstadio").val(data.nome);
             $("#capacidadeTotalEstadio").val(data.capacidade_total);
             $("#dataConstrucaoEstadio").val(data.data_construcao);
@@ -324,11 +327,33 @@
 
     $('#modalCores').on('show.bs.modal', function (event) { });
 
-    $('#modalPresidente').on('show.bs.modal', function (event) { });
+    $('#modalPresidente').on('show.bs.modal', function (event) {
+      $.ajax({
+        url: "http://localhost:3456/api/time/presidente/" + timeId,
+        method: "GET",
+        dataType: "JSON",
+        headers: {
+          "Authorization": TokenManager.getToken(),
+        },
+        success: function (data) {
+          if (data !== null) {
+            $("#nomePresidente").val(data.nome);
+            $("#inicioMandatoPresidente").val(data.mandato_inicio);
+            $("#fimMandatoPresidente").val(data.mandato_fim);
+            $("#presidenteId").val(data.id);
+          }
+        },
+        error: function (err) {
+          console.log(err);
+        },
+      });
+    });
   });
 </script>
 <script>
   $(document).ready(function () {
+    let timeId = $("#timeId").data("timeid");
+    
     $("#formEstadio").on('submit', function (event) {
       let estadioId = $("#estadioId").val();
 
@@ -376,6 +401,64 @@
               $("#dataConstrucaoEstadio").addClass("is-invalid");
               for (let error of errorMessages.data_construcao) {
                 $("#dataConstrucaoEstadioGroup").append(
+                  '<div class="invalid-feedback">' + error + '</div>'
+                );
+              }
+            }
+          }
+        },
+      });
+
+      event.preventDefault();
+    });
+
+    $("#formPresidente").on('submit', function (event) {
+      let presidenteId = $("#presidenteId").val();
+
+      let presidente = {
+        nome: $("#nomePresidente").val(),
+        mandato_inicio: $("#inicioMandatoPresidente").val(),
+        mandato_fim: $("#fimMandatoPresidente").val(),
+        time_id: timeId,
+      }
+
+      $.ajax({
+        type: presidenteId === "" ? "POST" : "PUT",
+        url: presidenteId === "" ? "http://localhost:3456/api/presidente" : "http://localhost:3456/api/presidente/" + presidenteId,
+        data: JSON.stringify(presidente),
+        dataType: "json",
+        headers: {
+          "Authorization": TokenManager.getToken(),
+        },
+        success: function (data) {
+          $(location).attr('href', '/edicao/' + timeId);
+        },
+        error: function (err) {
+          if (err.status == 400) {
+            let errorMessages = err.responseJSON.errors;
+
+            if (errorMessages.nome.length > 0) {
+              $("#nomePresidente").addClass("is-invalid");
+              for (let error of errorMessages.nome) {
+                $("#nomePresidenteGroup").append(
+                  '<div class="invalid-feedback">' + error + '</div>'
+                );
+              }
+            }
+
+            if (errorMessages.mandato_inicio.length > 0) {
+              $("#inicioMandatoPresidente").addClass("is-invalid");
+              for (let error of errorMessages.mandato_inicio) {
+                $("#inicioMandatoPresidenteGroup").append(
+                  '<div class="invalid-feedback">' + error + '</div>'
+                );
+              }
+            }
+
+            if (errorMessages.mandato_fim.length > 0) {
+              $("#fimMandatoPresidente").addClass("is-invalid");
+              for (let error of errorMessages.mandato_fim) {
+                $("#fimMandatoPresidenteGroup").append(
                   '<div class="invalid-feedback">' + error + '</div>'
                 );
               }

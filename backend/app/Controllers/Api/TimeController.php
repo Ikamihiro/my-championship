@@ -3,6 +3,8 @@
 namespace App\Controllers\Api;
 
 use App\Forms\Time\TimeForm;
+use App\Models\Estadio;
+use App\Models\Presidente;
 use App\Models\Time;
 use Lib\Http\Controller;
 use Lib\Http\Request;
@@ -69,5 +71,19 @@ class TimeController extends Controller
         $time = Time::findOrFail($id);
         $time->delete();
         return $response->noContent();
+    }
+
+    public function getEstadio(Request $request, Response $response, int $timeId)
+    {
+        $estadio = Estadio::where('time_id', $timeId)->first();
+
+        return $response->json($estadio);
+    }
+
+    public function getPresidente(Request $request, Response $response, int $timeId)
+    {
+        $estadio = Presidente::where('time_id', $timeId)->first();
+
+        return $response->json($estadio);
     }
 }
