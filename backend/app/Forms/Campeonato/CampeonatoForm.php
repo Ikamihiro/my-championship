@@ -1,21 +1,19 @@
 <?php
 
-namespace App\Forms\Cor;
+namespace App\Forms\Campeonato;
 
-use App\Rules\ExistsRule;
 use Lib\Validation\Form;
 use Lib\Validation\Rules\RequiredRule;
 
-class CorForm extends Form
+class CampeonatoForm extends Form
 {
     public static function make(array $data)
     {
         $rules = [
             'nome' => [new RequiredRule],
-<<<<<<< HEAD
-=======
-            'hex' => [new RequiredRule],
->>>>>>> f134d41382512019b93677d74b9a9162df4030f8
+            'temporada' => [new RequiredRule],
+            'tipo' => [new RequiredRule],
+            'premiacao_valor' => [new RequiredRule],
         ];
 
         return new self($data, $rules);

@@ -3,6 +3,7 @@
 namespace Lib\Router;
 
 use Lib\Http\Request;
+use Lib\Http\Response;
 
 class Router
 {
@@ -43,6 +44,7 @@ class Router
         $newRoute = new Route($method, $route, $action);
 
         $this->routes[$method][$route] = $newRoute;
+        $this->supportPreflightRequest($route);
 
         return $this->routes[$method][$route];
     }
@@ -89,6 +91,15 @@ class Router
     public function delete(string $route, $action)
     {
         return $this->add('delete', $route, $action);
+    }
+
+    public function supportPreflightRequest(string $route)
+    {
+        $callable = function (Request $request, Response $response) {
+            $response->json($request->getHeaders());
+        };
+
+        $this->routes['options'][$route] = new Route('options', $route, $callable);
     }
 
     /**

@@ -29,7 +29,7 @@ class UniqueRule extends Rule
         $result = $query->where($this->column, $field)->get();
 
         if (!$result->isEmpty()) {
-            $this->setError($this->column . ' must be unique!');
+            $this->setError($this->column . ' precisa ser um valor único!');
         }
 
         return $result->isEmpty();

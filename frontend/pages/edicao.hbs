@@ -1,0 +1,612 @@
+{{#section "styles"}}
+{{!--
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> --}}
+{{/section}}
+
+<div id="timeId" data-timeid="{{time}}"></div>
+
+<div class="row">
+  <div class="col-12">
+    <div id="message"></div>
+  </div>
+  <div class="col-12 col-lg-4 mb-2 mb-lg-2">
+    {{!-- Presidente --}}
+    <div class="card">
+      <div class="card-header">
+        <div class="d-flex justify-content-between align-items-center">
+          <h5 class="card-title mb-0">Presidente</h5>
+          <button type="button" class="btn btn-default text-white" data-bs-toggle="modal"
+            data-bs-target="#modalPresidente">
+            Editar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-lg-4 mb-2 mb-lg-2">
+    {{!-- Cores --}}
+    <div class="card">
+      <div class="card-header">
+        <div class="d-flex justify-content-between align-items-center">
+          <h5 class="card-title mb-0">Cores</h5>
+          <button type="button" class="btn btn-default text-white" data-bs-toggle="modal" data-bs-target="#modalCores">
+            Editar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-lg-4 mb-2 mb-lg-2">
+    {{!-- Estádio --}}
+    <div class="card">
+      <div class="card-header">
+        <div class="d-flex justify-content-between align-items-center">
+          <h5 class="card-title mb-0">Estádio</h5>
+          <button type="button" class="btn btn-default text-white" data-bs-toggle="modal"
+            data-bs-target="#modalEstadio">
+            Editar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-lg-4 mb-2 mb-lg-2">
+    {{!-- Uniformes --}}
+    <div class="card">
+      <div class="card-header">
+        <div class="d-flex justify-content-between align-items-center">
+          <h5 class="card-title mb-0">Uniformes</h5>
+          <button type="button" class="btn btn-default text-white" data-bs-toggle="modal"
+            data-bs-target="#modalUniformes">
+            Editar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-lg-4 mb-2 mb-lg-2">
+    {{!-- Comissão técnica --}}
+    <div class="card">
+      <div class="card-header">
+        <div class="d-flex justify-content-between align-items-center">
+          <h5 class="card-title mb-0">Comissão Técnica</h5>
+          <button type="button" class="btn btn-default text-white" data-bs-toggle="modal"
+            data-bs-target="#modalComissaoTecnica">
+            Editar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-lg-4 mb-2 mb-lg-2">
+    {{!-- Plantel --}}
+    <div class="card">
+      <div class="card-header">
+        <div class="d-flex justify-content-between align-items-center">
+          <h5 class="card-title mb-0">Plantel</h5>
+          <button type="button" class="btn btn-default text-white" data-bs-toggle="modal"
+            data-bs-target="#modalPlantel">
+            Editar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--modal de edição de Plantel-->
+<div class="modal fade" id="modalPlantel" tabindex="-1" aria-labelledby="modalPlantelLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel6">
+          Plantel
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="formGroupExampleInput61">Temporada</label>
+            <input type="text" class="form-control" id="formGroupExampleInput31" placeholder="xxxx" />
+          </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput62">Time</label>
+            <input type="text" class="form-control" id="formGroupExampleInput31" placeholder="xxx" />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--modal de edição de Comissão Técnica-->
+<div class="modal fade" id="modalComissaoTecnica" tabindex="-1" aria-labelledby="modalComissaoTecnicaLabel"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel5">
+          Comissão Técnica
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="formGroupExampleInput51">Membros disponíveis</label>
+            <select class="form-select" name="campeonato_search">
+              <option selected>Membros disponíveis</option>
+              <option value="1">Fulano</option>
+              <option value="2">Beltrano</option>
+              <option value="3">Ciclano</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--modal de edição de Uniformes-->
+<div class="modal fade" id="modalUniformes" tabindex="-1" aria-labelledby="modalUniformeslabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel4">
+          Uniformes
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="formUniformes" method="POST">
+          <input type="hidden" name="uniformeId" id="uniformeId">
+          <div class="mb-3" id="temporadaUniformeGroup">
+            <label class="form-label">Temporada</label>
+            <input type="text" class="form-control" id="temporadaUniforme" />
+          </div>
+          <div class="mb-3" id="modeloPrincipalGroup">
+            <label class="form-label">Modelo Principal</label>
+            <input type="text" class="form-control" id="modeloPrincipal" />
+          </div>
+          <div class="mb-3" id="modeloSecundarioGroup">
+            <label class="form-label">Modelo secundário</label>
+            <input type="text" class="form-control" id="modeloSecundario" />
+          </div>
+          <div class="d-flex justify-content-end w-100">
+            <button type="button" class="btn btn-secondary rounded" data-bs-dismiss="modal">Fechar</button>
+            <button type="submit" class="btn btn-default text-white ms-2">Salvar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--modal de edição de Estádio-->
+<div class="modal fade" id="modalEstadio" tabindex="-1" aria-labelledby="modalEstadioLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel3">
+          Estádio
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="formEstadio" method="POST">
+          <input type="hidden" id="estadioId">
+          <div class="mb-3" id="nomeEstadioGroup">
+            <label class="form-label">Nome</label>
+            <input type="text" class="form-control" id="nomeEstadio" />
+          </div>
+          <div class="mb-3" id="capacidadeTotalEstadioGroup">
+            <label class="form-label">Capacidade total</label>
+            <input type="number" class="form-control" id="capacidadeTotalEstadio" />
+          </div>
+          <div class="mb-3">
+            <label class="form-label" id="dataConstrucaoEstadioGroup">Data de construção</label>
+            <input type="date" class="form-control" id="dataConstrucaoEstadio" />
+          </div>
+          <div class="d-flex justify-content-end w-100">
+            <button type="button" class="btn btn-secondary rounded" data-bs-dismiss="modal">Fechar</button>
+            <button type="submit" class="btn btn-default text-white ms-2">Salvar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--modal de edição de Cores-->
+<div class="modal fade" id="modalCores" tabindex="-1" aria-labelledby="modalCoresLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel2">
+          Cores
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="formCores" method="POST">
+          <div class="mb-3" id="coresGroup">
+            <label class="form-label">Cores</label>
+            <select name="cores[]" id="coresSelect" class="form-select select-2" multiple="multiple">
+              <option selected>Selecione uma cor</option>
+            </select>
+          </div>
+          <div class="d-flex justify-content-end w-100">
+            <button type="button" class="btn btn-secondary rounded" data-bs-dismiss="modal">Fechar</button>
+            <button type="submit" class="btn btn-default text-white ms-2">Salvar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--modal de edição de Presidente-->
+<div class="modal fade" id="modalPresidente" tabindex="-1" aria-labelledby="modalPresidenteLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalPresidenteLabel">
+          Presidente
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="formPresidente" method="POST">
+          <input type="hidden" name="presidenteId" id="presidenteId">
+          <div class="mb-3" id="nomePresidenteGroup">
+            <label class="form-label">Nome</label>
+            <input type="text" class="form-control" id="nomePresidente" />
+          </div>
+          <div class="mb-3" id="inicioMandatoPresidenteGroup">
+            <label class="form-label">Início do mandato</label>
+            <input type="date" class="form-control" id="inicioMandatoPresidente" />
+          </div>
+          <div class="mb-3" id="fimMandatoPresidenteGroup">
+            <label class="form-label">Fim do mandato</label>
+            <input type="date" class="form-control" id="fimMandatoPresidente" />
+          </div>
+          <div class="d-flex justify-content-end w-100">
+            <button type="button" class="btn btn-secondary rounded" data-bs-dismiss="modal">Fechar</button>
+            <button type="submit" class="btn btn-default text-white ms-2">Salvar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{#section "scripts"}}
+{{!--
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
+<script>
+  const loadCoresInSelect = (cores, coresSelected) => {
+    $("#coresSelect").html('');
+    $("#coresSelect").append(new Option("Selecione uma cor", null, false, false))
+
+    for (let cor of cores) {
+      $("#coresSelect").append(new Option(cor.nome, cor.id, false, false));
+    }
+
+    for (let cor of coresSelected) {
+      $("#coresSelect").append(new Option(cor.nome, cor.id, true, true));
+    }
+  };
+
+  $(document).ready(function () {
+    let timeId = $("#timeId").data("timeid");
+
+    $('#modalPlantel').on('show.bs.modal', function (event) { });
+
+    $('#modalComissaoTecnica').on('show.bs.modal', function (event) { });
+
+    $('#modalUniformes').on('show.bs.modal', function (event) {
+      $.ajax({
+        url: "http://localhost:3456/api/time/uniforme/" + timeId,
+        method: "GET",
+        dataType: "JSON",
+        headers: {
+          "Authorization": TokenManager.getToken(),
+        },
+        success: function (data) {
+          if (data !== null) {
+            $("#temporadaUniforme").val(data.temporada);
+            $("#modeloPrincipal").val(data.modelo_principal);
+            $("#modeloSecundario").val(data.modelo_secundario);
+            $("#uniformeId").val(data.id);
+          }
+        },
+        error: function (err) {
+          console.log(err);
+        },
+      });
+    });
+
+    $('#modalEstadio').on('show.bs.modal', function (event) {
+      $.ajax({
+        url: "http://localhost:3456/api/time/estadio/" + timeId,
+        method: "GET",
+        dataType: "JSON",
+        headers: {
+          "Authorization": TokenManager.getToken(),
+        },
+        success: function (data) {
+          if (data !== null) {
+            let dataConstrucao = new Date(data.data_construcao);
+
+            $("#nomeEstadio").val(data.nome);
+            $("#capacidadeTotalEstadio").val(data.capacidade_total);
+            $("#dataConstrucaoEstadio").val(data.data_construcao);
+            $("#estadioId").val(data.id);
+          }
+        },
+        error: function (err) {
+          console.log(err);
+        },
+      });
+    });
+
+    $('#modalCores').on('show.bs.modal', function (event) {
+      $.ajax({
+        url: "http://localhost:3456/api/time/cores/" + timeId,
+        method: "GET",
+        dataType: "JSON",
+        headers: {
+          "Authorization": TokenManager.getToken(),
+        },
+        success: function (data) {
+          if (data !== null) {
+            loadCoresInSelect(data.cores, data.coresSelected);
+          }
+        },
+        error: function (err) {
+          console.log(err);
+        },
+      });
+    });
+
+    $('#modalPresidente').on('show.bs.modal', function (event) {
+      $.ajax({
+        url: "http://localhost:3456/api/time/presidente/" + timeId,
+        method: "GET",
+        dataType: "JSON",
+        headers: {
+          "Authorization": TokenManager.getToken(),
+        },
+        success: function (data) {
+          if (data !== null) {
+            $("#nomePresidente").val(data.nome);
+            $("#inicioMandatoPresidente").val(data.mandato_inicio);
+            $("#fimMandatoPresidente").val(data.mandato_fim);
+            $("#presidenteId").val(data.id);
+          }
+        },
+        error: function (err) {
+          console.log(err);
+        },
+      });
+    });
+  });
+</script>
+<script>
+  $(document).ready(function () {
+    let timeId = $("#timeId").data("timeid");
+
+    $("#formEstadio").on('submit', function (event) {
+      let estadioId = $("#estadioId").val();
+
+      let estadio = {
+        nome: $("#nomeEstadio").val(),
+        capacidade_total: $("#capacidadeTotalEstadio").val(),
+        data_construcao: $("#dataConstrucaoEstadio").val(),
+        time_id: timeId,
+      }
+
+      $.ajax({
+        type: estadioId === "" ? "POST" : "PUT",
+        url: estadioId === "" ? "http://localhost:3456/api/estadio" : "http://localhost:3456/api/estadio/" + estadioId,
+        data: JSON.stringify(estadio),
+        dataType: "json",
+        headers: {
+          "Authorization": TokenManager.getToken(),
+        },
+        success: function (data) {
+          $(location).attr('href', '/edicao/' + timeId);
+        },
+        error: function (err) {
+          if (err.status == 400) {
+            let errorMessages = err.responseJSON.errors;
+
+            if (errorMessages.nome.length > 0) {
+              $("#nomeEstadio").addClass("is-invalid");
+              for (let error of errorMessages.nome) {
+                $("#nomeEstadioGroup").append(
+                  '<div class="invalid-feedback">' + error + '</div>'
+                );
+              }
+            }
+
+            if (errorMessages.capacidade_total.length > 0) {
+              $("#capacidadeTotalEstadio").addClass("is-invalid");
+              for (let error of errorMessages.capacidade_total) {
+                $("#capacidadeTotalEstadioGroup").append(
+                  '<div class="invalid-feedback">' + error + '</div>'
+                );
+              }
+            }
+
+            if (errorMessages.data_construcao.length > 0) {
+              $("#dataConstrucaoEstadio").addClass("is-invalid");
+              for (let error of errorMessages.data_construcao) {
+                $("#dataConstrucaoEstadioGroup").append(
+                  '<div class="invalid-feedback">' + error + '</div>'
+                );
+              }
+            }
+          }
+        },
+      });
+
+      event.preventDefault();
+    });
+
+    $("#formPresidente").on('submit', function (event) {
+      let presidenteId = $("#presidenteId").val();
+
+      let presidente = {
+        nome: $("#nomePresidente").val(),
+        mandato_inicio: $("#inicioMandatoPresidente").val(),
+        mandato_fim: $("#fimMandatoPresidente").val(),
+        time_id: timeId,
+      }
+
+      $.ajax({
+        type: presidenteId === "" ? "POST" : "PUT",
+        url: presidenteId === "" ? "http://localhost:3456/api/presidente" : "http://localhost:3456/api/presidente/" + presidenteId,
+        data: JSON.stringify(presidente),
+        dataType: "json",
+        headers: {
+          "Authorization": TokenManager.getToken(),
+        },
+        success: function (data) {
+          $(location).attr('href', '/edicao/' + timeId);
+        },
+        error: function (err) {
+          if (err.status == 400) {
+            let errorMessages = err.responseJSON.errors;
+
+            if (errorMessages.nome.length > 0) {
+              $("#nomePresidente").addClass("is-invalid");
+              for (let error of errorMessages.nome) {
+                $("#nomePresidenteGroup").append(
+                  '<div class="invalid-feedback">' + error + '</div>'
+                );
+              }
+            }
+
+            if (errorMessages.mandato_inicio.length > 0) {
+              $("#inicioMandatoPresidente").addClass("is-invalid");
+              for (let error of errorMessages.mandato_inicio) {
+                $("#inicioMandatoPresidenteGroup").append(
+                  '<div class="invalid-feedback">' + error + '</div>'
+                );
+              }
+            }
+
+            if (errorMessages.mandato_fim.length > 0) {
+              $("#fimMandatoPresidente").addClass("is-invalid");
+              for (let error of errorMessages.mandato_fim) {
+                $("#fimMandatoPresidenteGroup").append(
+                  '<div class="invalid-feedback">' + error + '</div>'
+                );
+              }
+            }
+          }
+        },
+      });
+
+      event.preventDefault();
+    });
+
+    $("#formUniformes").on('submit', function (event) {
+      let uniformeId = $("#uniformeId").val();
+
+      let uniforme = {
+        temporada: $("#temporadaUniforme").val(),
+        modelo_principal: $("#modeloPrincipal").val(),
+        modelo_secundario: $("#modeloSecundario").val(),
+        time_id: timeId,
+      }
+
+      $.ajax({
+        type: uniformeId === "" ? "POST" : "PUT",
+        url: uniformeId === "" ? "http://localhost:3456/api/uniforme" : "http://localhost:3456/api/uniforme/" + uniformeId,
+        data: JSON.stringify(uniforme),
+        dataType: "json",
+        headers: {
+          "Authorization": TokenManager.getToken(),
+        },
+        success: function (data) {
+          $(location).attr('href', '/edicao/' + timeId);
+        },
+        error: function (err) {
+          if (err.status == 400) {
+            let errorMessages = err.responseJSON.errors;
+
+            if (errorMessages.temporada.length > 0) {
+              $("#temporadaUniforme").addClass("is-invalid");
+              for (let error of errorMessages.temporada) {
+                $("#temporadaUniformeGroup").append(
+                  '<div class="invalid-feedback">' + error + '</div>'
+                );
+              }
+            }
+
+            if (errorMessages.modelo_principal.length > 0) {
+              $("#modeloPrincipal").addClass("is-invalid");
+              for (let error of errorMessages.modelo_principal) {
+                $("#modeloPrincipalGroup").append(
+                  '<div class="invalid-feedback">' + error + '</div>'
+                );
+              }
+            }
+
+            if (errorMessages.modelo_secundario.length > 0) {
+              $("#modeloSecundario").addClass("is-invalid");
+              for (let error of errorMessages.modelo_secundario) {
+                $("#modeloSecundarioGroup").append(
+                  '<div class="invalid-feedback">' + error + '</div>'
+                );
+              }
+            }
+          }
+        },
+      });
+
+      event.preventDefault();
+    });
+
+    $("#formCores").on('submit', function (event) {
+      let data = {
+        cores: $("#coresSelect").val(),
+      }
+
+      $.ajax({
+        type: "POST",
+        url: "http://localhost:3456/api/time/cores/" + timeId,
+        data: JSON.stringify(data),
+        dataType: "json",
+        headers: {
+          "Authorization": TokenManager.getToken(),
+        },
+        success: function (data) {
+          $(location).attr('href', '/edicao/' + timeId);
+        },
+        error: function (err) {
+          console.log(err);
+        },
+      });
+
+      event.preventDefault();
+    });
+  });
+</script>
+{{/section}}

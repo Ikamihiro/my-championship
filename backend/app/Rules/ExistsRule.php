@@ -19,7 +19,7 @@ class ExistsRule extends Rule
         $result = Database::table($this->table)->find($field);
 
         if (is_null($result)) {
-            $this->setError('Record not exists in database!');
+            $this->setError('Este ID não existe no banco de dados!');
         }
 
         return !is_null($result);

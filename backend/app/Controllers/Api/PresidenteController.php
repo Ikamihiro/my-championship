@@ -22,7 +22,7 @@ class PresidenteController extends Controller
 
         $presidente = Presidente::create($request->getFormJSON());
 
-        return $response->json($presidente->load('time'));
+        return $response->json($presidente);
     }
 
     public function update(Request $request, Response $response, int $id)
@@ -33,6 +33,7 @@ class PresidenteController extends Controller
         if (!$form->validate()) return $response->badRequest($form->getErrors());
 
         $presidente->update($request->getFormJSON());
+        return $response->json($presidente);
     }
 
     public function show(Request $request, Response $response, int $id)

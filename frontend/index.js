@@ -18,12 +18,36 @@ app.get("/", function (req, res) {
   res.render("index");
 });
 
+app.get("/login", function (req, res) {
+  res.render("login", {
+    layout: 'auth',
+  });
+});
+
+app.get("/register", function (req, res) {
+  res.render("register", {
+    layout: 'auth',
+  });
+});
+
+app.get("/edicao/:time", function (req, res) {
+  let time = req.params.time;
+
+  res.render("edicao", {
+    time: time,
+  });
+});
+
 app.get("/partidas", function (req, res) {
   res.render("partidas");
 });
 
 app.get("/campeonatos", function (req, res) {
   res.render("campeonatos");
+});
+
+app.get("/classificacao", function (req, res) {
+  res.render("classificacao");
 });
 
 app.listen(port);

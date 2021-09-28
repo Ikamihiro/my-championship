@@ -1,98 +1,124 @@
-<div class="card" id="card1">
-  <div class="card-body">
-    <div class="row">
-      <div class="col-8 col-md-8">
-        <p class="textCard">Campeonato</p>
-      </div>
-      <div class="col-4 col-md-4">
-        <a href="edicao.html" class="btn-primary">
-          <p
-            class="textBotao"
-            style="background-color: #227225; border-radius: 20px;"
-          >Novo Campeonato
-          </p>
-        </a>
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <div class="d-flex justify-content-between align-items-center">
+          <h5 class="card-title mb-0">Campeonatos</h5>
+          <div class="d-flex justify-content-end align-items-center">
+            <a href="/" class="btn btn-default text-white">
+              Novo Campeonato
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<br />
-<br />
-<div class="card" id="card1">
-  <ul class="list-group">
-    <li class="list-group-item">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-8 col-md-8">
-            <p class="textCard">Campeonato Nacional 2021</p>
-          </div>
-          <div class="col-4 col-md-4">
-            <!-- Button trigger modal -->
+  <div class="col-12 pt-2 overflow-auto">
+    <table class="table table-bordered table-hover table-fixed mb-1">
+      <thead>
+        <tr>
+          <th width="60%">Campeonato</th>
+          <th>Temporada</th>
+          <th width="10%">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Campeonato Nacional</td>
+          <td>2021</td>
+          <td>
             <button
               type="button"
-              class="btn-primary detalhe"
+              class="btn btn-default text-white"
               data-bs-toggle="modal"
               data-bs-target="#exampleModal"
             >
               Detalhes
             </button>
-
-            <!-- Modal -->
-            <div
-              class="modal fade"
-              id="exampleModal"
-              tabindex="-1"
-              aria-labelledby="exampleModalLabel"
-              aria-hidden="true"
+          </td>
+        </tr>
+        <tr>
+          <td>Campeonato Estadual</td>
+          <td>2020/2021</td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-default text-white"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
             >
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal
-                      Campeonato Nacional</h5>
-                    <button
-                      type="button"
-                      class="btn-close"
-                      data-bs-dismiss="modal"
-                      aria-label="Close"
-                    ></button>
-                  </div>
-                  <div class="modal-body">
-                    <form>
-                      <div class="form-group">
-                        <label for="formGroupExampleInput">Temporada</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="formGroupExampleInput"
-                          placeholder="2021"
-                        />
-                      </div>
-                      <div class="form-group">
-                        <label for="formGroupExampleInput2">Premiação</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="formGroupExampleInput2"
-                          placeholder="R$35.000.000"
-                        />
-                      </div>
-                    </form>
-                  </div>
-                  <div class="modal-footer">
-                    <button
-                      type="button"
-                      class="btn btn-secondary"
-                      data-bs-dismiss="modal"
-                    >Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+              Detalhes
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>Copa dos Campeões</td>
+          <td>2022</td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-default text-white"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+            >
+              Detalhes
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          Campeonato ...
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
       </div>
-    </li>
-  </ul>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="formGroupExampleInput">Temporada</label>
+            <input
+              type="text"
+              class="form-control"
+              id="formGroupExampleInput"
+              placeholder="2021/2022"
+            />
+          </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput2">Premiação</label>
+            <input
+              type="text"
+              class="form-control"
+              id="formGroupExampleInput2"
+              placeholder="R$ 35.000.000"
+            />
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+        >Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
 </div>
