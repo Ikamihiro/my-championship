@@ -67,6 +67,10 @@ $app->router->get('/api/time/presidente/{timeId}', [
     TimeController::class, 'getPresidente',
 ])->addMiddleware(AuthMiddleware::class);
 
+$app->router->get('/api/time/uniforme/{timeId}', [
+    TimeController::class, 'getUniforme',
+])->addMiddleware(AuthMiddleware::class);
+
 $app->router->post('/api/campeonato/generate_partidas/{id}', [
     CampeonatoController::class, 'generatePartidas',
 ])->addMiddleware(AuthMiddleware::class);

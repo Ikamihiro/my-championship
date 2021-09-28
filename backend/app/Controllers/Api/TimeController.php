@@ -6,6 +6,7 @@ use App\Forms\Time\TimeForm;
 use App\Models\Estadio;
 use App\Models\Presidente;
 use App\Models\Time;
+use App\Models\Uniforme;
 use Lib\Http\Controller;
 use Lib\Http\Request;
 use Lib\Http\Response;
@@ -82,8 +83,15 @@ class TimeController extends Controller
 
     public function getPresidente(Request $request, Response $response, int $timeId)
     {
-        $estadio = Presidente::where('time_id', $timeId)->first();
+        $presidente = Presidente::where('time_id', $timeId)->first();
 
-        return $response->json($estadio);
+        return $response->json($presidente);
+    }
+
+    public function getUniforme(Request $request, Response $response, int $timeId)
+    {
+        $uniforme = Uniforme::where('time_id', $timeId)->first();
+
+        return $response->json($uniforme);
     }
 }

@@ -171,24 +171,25 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="formGroupExampleInput41">Temporada</label>
-            <input type="text" class="form-control" id="formGroupExampleInput41" placeholder="xxxx" />
+        <form id="formUniformes" method="POST">
+          <input type="hidden" name="uniformeId" id="uniformeId">
+          <div class="mb-3" id="temporadaUniformeGroup">
+            <label class="form-label">Temporada</label>
+            <input type="text" class="form-control" id="temporadaUniforme" />
           </div>
-          <div class="form-group">
-            <label for="formGroupExampleInput42">Modelo Principal</label>
-            <input type="text" class="form-control" id="formGroupExampleInput42" placeholder="xxx" />
+          <div class="mb-3" id="modeloPrincipalGroup">
+            <label class="form-label">Modelo Principal</label>
+            <input type="text" class="form-control" id="modeloPrincipal" />
           </div>
-          <div class="form-group">
-            <label for="formGroupExampleInput43">Modelo secundário</label>
-            <input type="text" class="form-control" id="formGroupExampleInput43" placeholder="xxx" />
+          <div class="mb-3" id="modeloSecundarioGroup">
+            <label class="form-label">Modelo secundário</label>
+            <input type="text" class="form-control" id="modeloSecundario" />
+          </div>
+          <div class="d-flex justify-content-end w-100">
+            <button type="button" class="btn btn-secondary rounded" data-bs-dismiss="modal">Fechar</button>
+            <button type="submit" class="btn btn-default text-white ms-2">Salvar</button>
           </div>
         </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-        <button type="button" class="btn btn-primary">Salvar</button>
       </div>
     </div>
   </div>
@@ -299,7 +300,27 @@
 
     $('#modalComissaoTecnica').on('show.bs.modal', function (event) { });
 
-    $('#modalUniformes').on('show.bs.modal', function (event) { });
+    $('#modalUniformes').on('show.bs.modal', function (event) {
+      $.ajax({
+        url: "http://localhost:3456/api/time/uniforme/" + timeId,
+        method: "GET",
+        dataType: "JSON",
+        headers: {
+          "Authorization": TokenManager.getToken(),
+        },
+        success: function (data) {
+          if (data !== null) {
+            $("#temporadaUniforme").val(data.temporada);
+            $("#modeloPrincipal").val(data.modelo_principal);
+            $("#modeloSecundario").val(data.modelo_secundario);
+            $("#uniformeId").val(data.id);
+          }
+        },
+        error: function (err) {
+          console.log(err);
+        },
+      });
+    });
 
     $('#modalEstadio').on('show.bs.modal', function (event) {
       $.ajax({
@@ -353,7 +374,7 @@
 <script>
   $(document).ready(function () {
     let timeId = $("#timeId").data("timeid");
-    
+
     $("#formEstadio").on('submit', function (event) {
       let estadioId = $("#estadioId").val();
 
@@ -459,6 +480,64 @@
               $("#fimMandatoPresidente").addClass("is-invalid");
               for (let error of errorMessages.mandato_fim) {
                 $("#fimMandatoPresidenteGroup").append(
+                  '<div class="invalid-feedback">' + error + '</div>'
+                );
+              }
+            }
+          }
+        },
+      });
+
+      event.preventDefault();
+    });
+
+    $("#formUniformes").on('submit', function (event) {
+      let uniformeId = $("#uniformeId").val();
+
+      let uniforme = {
+        temporada: $("#temporadaUniforme").val(),
+        modelo_principal: $("#modeloPrincipal").val(),
+        modelo_secundario: $("#modeloSecundario").val(),
+        time_id: timeId,
+      }
+
+      $.ajax({
+        type: uniformeId === "" ? "POST" : "PUT",
+        url: uniformeId === "" ? "http://localhost:3456/api/uniforme" : "http://localhost:3456/api/uniforme/" + uniformeId,
+        data: JSON.stringify(uniforme),
+        dataType: "json",
+        headers: {
+          "Authorization": TokenManager.getToken(),
+        },
+        success: function (data) {
+          $(location).attr('href', '/edicao/' + timeId);
+        },
+        error: function (err) {
+          if (err.status == 400) {
+            let errorMessages = err.responseJSON.errors;
+
+            if (errorMessages.temporada.length > 0) {
+              $("#temporadaUniforme").addClass("is-invalid");
+              for (let error of errorMessages.temporada) {
+                $("#temporadaUniformeGroup").append(
+                  '<div class="invalid-feedback">' + error + '</div>'
+                );
+              }
+            }
+
+            if (errorMessages.modelo_principal.length > 0) {
+              $("#modeloPrincipal").addClass("is-invalid");
+              for (let error of errorMessages.modelo_principal) {
+                $("#modeloPrincipalGroup").append(
+                  '<div class="invalid-feedback">' + error + '</div>'
+                );
+              }
+            }
+
+            if (errorMessages.modelo_secundario.length > 0) {
+              $("#modeloSecundario").addClass("is-invalid");
+              for (let error of errorMessages.modelo_secundario) {
+                $("#modeloSecundarioGroup").append(
                   '<div class="invalid-feedback">' + error + '</div>'
                 );
               }
