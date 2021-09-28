@@ -1,5 +1,6 @@
 {{#section "styles"}}
-{{!-- --}}
+{{!--
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> --}}
 {{/section}}
 
 <div id="timeId" data-timeid="{{time}}"></div>
@@ -241,16 +242,18 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="formGroupExampleInput21">Nome</label>
-            <input type="text" class="form-control" id="formGroupExampleInput21" placeholder="Azul e branco" />
+        <form id="formCores" method="POST">
+          <div class="mb-3" id="coresGroup">
+            <label class="form-label">Cores</label>
+            <select name="cores[]" id="coresSelect" class="form-select select-2" multiple="multiple">
+              <option selected>Selecione uma cor</option>
+            </select>
+          </div>
+          <div class="d-flex justify-content-end w-100">
+            <button type="button" class="btn btn-secondary rounded" data-bs-dismiss="modal">Fechar</button>
+            <button type="submit" class="btn btn-default text-white ms-2">Salvar</button>
           </div>
         </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-        <button type="button" class="btn btn-primary">Salvar</button>
       </div>
     </div>
   </div>
@@ -292,7 +295,22 @@
 </div>
 
 {{#section "scripts"}}
+{{!--
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
 <script>
+  const loadCoresInSelect = (cores, coresSelected) => {
+    $("#coresSelect").html('');
+    $("#coresSelect").append(new Option("Selecione uma cor", null, false, false))
+
+    for (let cor of cores) {
+      $("#coresSelect").append(new Option(cor.nome, cor.id, false, false));
+    }
+
+    for (let cor of coresSelected) {
+      $("#coresSelect").append(new Option(cor.nome, cor.id, true, true));
+    }
+  };
+
   $(document).ready(function () {
     let timeId = $("#timeId").data("timeid");
 
@@ -346,7 +364,24 @@
       });
     });
 
-    $('#modalCores').on('show.bs.modal', function (event) { });
+    $('#modalCores').on('show.bs.modal', function (event) {
+      $.ajax({
+        url: "http://localhost:3456/api/time/cores/" + timeId,
+        method: "GET",
+        dataType: "JSON",
+        headers: {
+          "Authorization": TokenManager.getToken(),
+        },
+        success: function (data) {
+          if (data !== null) {
+            loadCoresInSelect(data.cores, data.coresSelected);
+          }
+        },
+        error: function (err) {
+          console.log(err);
+        },
+      });
+    });
 
     $('#modalPresidente').on('show.bs.modal', function (event) {
       $.ajax({
@@ -543,6 +578,30 @@
               }
             }
           }
+        },
+      });
+
+      event.preventDefault();
+    });
+
+    $("#formCores").on('submit', function (event) {
+      let data = {
+        cores: $("#coresSelect").val(),
+      }
+
+      $.ajax({
+        type: "POST",
+        url: "http://localhost:3456/api/time/cores/" + timeId,
+        data: JSON.stringify(data),
+        dataType: "json",
+        headers: {
+          "Authorization": TokenManager.getToken(),
+        },
+        success: function (data) {
+          $(location).attr('href', '/edicao/' + timeId);
+        },
+        error: function (err) {
+          console.log(err);
         },
       });
 

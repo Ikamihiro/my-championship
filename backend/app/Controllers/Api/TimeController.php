@@ -3,10 +3,12 @@
 namespace App\Controllers\Api;
 
 use App\Forms\Time\TimeForm;
+use App\Models\Cor;
 use App\Models\Estadio;
 use App\Models\Presidente;
 use App\Models\Time;
 use App\Models\Uniforme;
+use Illuminate\Database\Eloquent\Builder;
 use Lib\Http\Controller;
 use Lib\Http\Request;
 use Lib\Http\Response;
@@ -63,7 +65,12 @@ class TimeController extends Controller
 
     public function show(Request $request, Response $response, int $id)
     {
-        $time = Time::with('cores')->where('id', $id)->firstOrFail($id);
+        $time = Time::with([
+            'cores',
+            'estadio',
+            'presidente',
+        ])->where('id', $id)->firstOrFail($id);
+
         return $response->json($time);
     }
 
@@ -93,5 +100,34 @@ class TimeController extends Controller
         $uniforme = Uniforme::where('time_id', $timeId)->first();
 
         return $response->json($uniforme);
+    }
+
+    public function getCores(Request $request, Response $response, int $timeId)
+    {
+        $cores = Cor::whereDoesntHave('times', function (Builder $query) use ($timeId) {
+            $query->where('time_id', $timeId);
+        })->get();
+
+        $coresSelected = Cor::whereHas('times', function (Builder $query) use ($timeId) {
+            $query->where('time_id', $timeId);
+        })->get();
+
+        return $response->json([
+            'cores' => $cores,
+            'coresSelected' => $coresSelected,
+        ]);
+    }
+
+    public function saveCores(Request $request, Response $response, int $timeId)
+    {
+        $time = Time::findOrFail($timeId);
+
+        if ($request->getFormJSON()['cores']) {
+            $time->cores()->sync($request->getFormJSON()['cores']);
+        }
+
+        return $response->json($time->load([
+            'cores',
+        ]));
     }
 }
