@@ -13,6 +13,7 @@ class Plantel extends Model
 
     protected $fillable = [
         'temporada',
+        'time_id',
     ];
     
     public function time()
