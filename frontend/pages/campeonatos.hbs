@@ -1,3 +1,8 @@
+{{#section "styles"}}
+{{/section}}
+
+<div id="campeonatoId" data-campeonatoid="{{campeonato}}"></div>
+
 <form id="getCampeonatosForm" action="http://localhost:3456/api/campeonato" method="GET" hidden></form>
 
 <div class="row">
@@ -69,15 +74,13 @@
           </div>
           <div class="d-flex justify-content-end w-100">
             <button type="button" class="btn btn-secondary rounded" data-bs-dismiss="modal">Fechar</button>
-            <button type="submit" class="btn btn-default text-white ms-2">Salvar</button>
+            <button type="submit" class="btn btn-default text-white ms-2" data-bs-dismiss="modal">Salvar</button>
           </div>
         </form>
       </div>
     </div>
   </div>
 </div>
-
-
 
 
 
@@ -167,6 +170,75 @@
           console.log(err);
         },
       });
+    });
+
+
+    $("#formCampeonato").on('submit', function (event) {
+      let campeonatoId = $("#campeonatoId").val();
+
+      let campeonato = {
+        nome: $("#nomeCampeonato").val(),
+        temporada: $("#temporadaCampeonato").val(),
+        tipo: $("#tipoCampeonato").val(),
+        premiacao_valor: $("#premiacaoCampeonato").val(),
+      }
+
+      $.ajax({
+        type: campeonatoId === "" ? "POST" : "PUT",
+        url: campeonatoId === "" ? "http://localhost:3456/api/campeonato" : "http://localhost:3456/api/campeonato/" + campeonatoId,
+        data: JSON.stringify(campeonato),
+        dataType: "json",
+        headers: {
+          "Authorization": TokenManager.getToken(),
+        },
+        success: function (data) {
+          $(location).attr('href', '/campeonato/');
+          echo("Cadastro realizado")
+        },
+        error: function (err) {
+          if (err.status == 400) {
+            let errorMessages = err.responseJSON.errors;
+
+            if (errorMessages.nome.length > 0) {
+              $("#nomeCampeonato").addClass("is-invalid");
+              for (let error of errorMessages.nome) {
+                $("#nomeCampeonatoGroup").append(
+                  '<div class="invalid-feedback">' + error + '</div>'
+                );
+              }
+            }
+
+            if (errorMessages.temporada.length > 0) {
+              $("#temporadaCampeonato").addClass("is-invalid");
+              for (let error of errorMessages.temporada) {
+                $("#temporadaCampeonatoGroup").append(
+                  '<div class="invalid-feedback">' + error + '</div>'
+                );
+              }
+            }
+
+            if (errorMessages.tipo.length > 0) {
+              $("#tipoCampeonato").addClass("is-invalid");
+              for (let error of errorMessages.tipo) {
+                $("#tipoCampeonatoGroup").append(
+                  '<div class="invalid-feedback">' + error + '</div>'
+                );
+              }
+            }
+
+            if (errorMessages.premiacao_valor.length > 0) {
+              $("#premiacaoCampeonato").addClass("is-invalid");
+              for (let error of errorMessages.premiacao_valor) {
+                $("#premiacaoCampeonatoGroup").append(
+                  '<div class="invalid-feedback">' + error + '</div>'
+                );
+              }
+            }
+          }
+        },
+      });
+
+      event.preventDefault();
     });
 
 </script>
