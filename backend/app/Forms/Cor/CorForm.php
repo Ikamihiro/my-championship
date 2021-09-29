@@ -12,7 +12,10 @@ class CorForm extends Form
     {
         $rules = [
             'nome' => [new RequiredRule],
+<<<<<<< HEAD
+=======
             'hex' => [new RequiredRule],
+>>>>>>> f134d41382512019b93677d74b9a9162df4030f8
         ];
 
         return new self($data, $rules);
