@@ -1,6 +1,4 @@
 {{#section "styles"}}
-{{!--
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> --}}
 {{/section}}
 
 <div id="timeId" data-timeid="{{time}}"></div>
@@ -89,13 +87,33 @@
       <div class="card-header">
         <div class="d-flex justify-content-between align-items-center">
           <h5 class="card-title mb-0">Plantel</h5>
-          <button type="button" class="btn btn-default text-white" data-bs-toggle="modal"
-            data-bs-target="#modalPlantel">
+          <button type="button" class="btn btn-default text-white" id="btnPlanteisList">
             Editar
           </button>
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="row d-none" id="planteisListDiv">
+  <div class="col-12 pt-2 d-flex justify-content-end">
+    <button type="button" class="btn btn-default text-white" id="btnNewPlantel" data-method="POST"
+      data-bs-toggle="modal" data-bs-target="#modalPlantel">
+      Novo plantel
+    </button>
+  </div>
+  <div class="col-12 pt-2 overflow-auto">
+    <table class="table table-bordered table-hover table-fixed mb-1">
+      <thead>
+        <tr>
+          <th>Temporada</th>
+          <th width="10%">Ações</th>
+        </tr>
+      </thead>
+      <tbody id="planteisListBody">
+      </tbody>
+    </table>
   </div>
 </div>
 
@@ -110,20 +128,18 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="formGroupExampleInput61">Temporada</label>
-            <input type="text" class="form-control" id="formGroupExampleInput31" placeholder="xxxx" />
+        <form id="formPlantel" method="POST">
+          <input type="hidden" name="plantelId" id="plantelId">
+          <input type="hidden" name="methodPlantel" id="methodPlantel" value="POST">
+          <div class="mb-3" id="temporadaPlantelGroup">
+            <label class="form-label">Temporada</label>
+            <input type="text" class="form-control" id="temporadaPlantel" />
           </div>
-          <div class="form-group">
-            <label for="formGroupExampleInput62">Time</label>
-            <input type="text" class="form-control" id="formGroupExampleInput31" placeholder="xxx" />
+          <div class="d-flex justify-content-end w-100">
+            <button type="button" class="btn btn-secondary rounded" data-bs-dismiss="modal">Fechar</button>
+            <button type="submit" class="btn btn-default text-white ms-2">Salvar</button>
           </div>
         </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-        <button type="button" class="btn btn-primary">Salvar</button>
       </div>
     </div>
   </div>
@@ -295,8 +311,6 @@
 </div>
 
 {{#section "scripts"}}
-{{!--
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
 <script>
   const loadCoresInSelect = (cores, coresSelected) => {
     $("#coresSelect").html('');
@@ -311,10 +325,77 @@
     }
   };
 
+  const fillPlanteisTable = (planteis) => {
+    let planteisRows = '';
+
+    for (let plantel of planteis) {
+      planteisRows += `
+        <tr>
+          <td>${plantel.temporada}</td>
+          <td>
+            <a href="/edicao/${plantel.id}" class="btn btn-default text-white"
+              data-bs-toggle="modal" data-bs-target="#modalPlantel" data-method="PUT" data-plantelid="${plantel.id}">
+              Detalhes
+            </a>
+          </td>
+        </tr>
+      `;
+    }
+
+    $("#planteisListBody").html('');
+    $("#planteisListBody").html(planteisRows);
+  }
+
   $(document).ready(function () {
     let timeId = $("#timeId").data("timeid");
 
-    $('#modalPlantel').on('show.bs.modal', function (event) { });
+    $('#btnPlanteisList').on('click', function (event) {
+      if ($("#planteisListDiv").hasClass('d-none')) {
+        $.ajax({
+          url: "http://localhost:3456/api/time/planteis/" + timeId,
+          method: "GET",
+          dataType: "JSON",
+          headers: {
+            "Authorization": TokenManager.getToken(),
+          },
+          success: function (data) {
+            fillPlanteisTable(data);
+          },
+          error: function (err) {
+            console.log(err);
+          },
+        });
+      }
+
+      $("#planteisListDiv").toggleClass('d-none');
+    });
+
+    $('#modalPlantel').on('show.bs.modal', function (event) {
+      let plantelId = $(event.relatedTarget).data('plantelid') || "";
+
+      $("#methodPlantel").val($(event.relatedTarget).data('method'));
+
+      if (plantelId !== "") {
+        $("#plantelId").val(plantelId);
+
+        $.ajax({
+          url: "http://localhost:3456/api/plantel/" + plantelId,
+          method: "GET",
+          dataType: "JSON",
+          headers: {
+            "Authorization": TokenManager.getToken(),
+          },
+          success: function (data) {
+            if (data !== null) {
+              $("#temporadaPlantel").val(data.temporada);
+            }
+          },
+          error: function (err) {
+            console.log(err);
+          },
+        });
+      }
+    });
 
     $('#modalComissaoTecnica').on('show.bs.modal', function (event) { });
 
@@ -404,11 +485,6 @@
         },
       });
     });
-  });
-</script>
-<script>
-  $(document).ready(function () {
-    let timeId = $("#timeId").data("timeid");
 
     $("#formEstadio").on('submit', function (event) {
       let estadioId = $("#estadioId").val();
@@ -602,6 +678,45 @@
         },
         error: function (err) {
           console.log(err);
+        },
+      });
+
+      event.preventDefault();
+    });
+
+    $("#formPlantel").on('submit', function (event) {
+      let plantelId = $("#plantelId").val();
+      let methodPlantel = $("#methodPlantel").val();
+
+      let plantel = {
+        temporada: $("#temporadaPlantel").val(),
+        time_id: timeId,
+      }
+
+      $.ajax({
+        type: methodPlantel,
+        url: methodPlantel === "POST" ? "http://localhost:3456/api/plantel" : "http://localhost:3456/api/plantel/" + plantelId,
+        data: JSON.stringify(plantel),
+        dataType: "json",
+        headers: {
+          "Authorization": TokenManager.getToken(),
+        },
+        success: function (data) {
+          $(location).attr('href', '/edicao/' + timeId);
+        },
+        error: function (err) {
+          if (err.status == 400) {
+            let errorMessages = err.responseJSON.errors;
+
+            if (errorMessages.temporada.length > 0) {
+              $("#temporadaPlantel").addClass("is-invalid");
+              for (let error of errorMessages.temporada) {
+                $("#temporadaPlantelGroup").append(
+                  '<div class="invalid-feedback">' + error + '</div>'
+                );
+              }
+            }
+          }
         },
       });
 

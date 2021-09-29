@@ -54,10 +54,15 @@ class Time extends Model
     public function campeonatos()
     {
         return $this->belongsToMany(
-            Campeonato::class, 
+            Campeonato::class,
             'campeonatos_times',
             'time_id',
             'campeonato_id',
         );
+    }
+
+    public function planteis()
+    {
+        return $this->hasMany(Plantel::class);
     }
 }
