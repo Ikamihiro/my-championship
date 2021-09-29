@@ -29,10 +29,12 @@ use App\Controllers\Api\{
     CampeonatoController,
     ComissaoTecnicaController,
     MembroController,
+    PartidaController,
     PatrocinadorController
 };
 use App\Controllers\HomeController;
 use App\Middlewares\AuthMiddleware;
+use App\Models\Partida;
 use Lib\Application;
 use Lib\Http\Request;
 use Lib\Http\Response;
@@ -58,6 +60,7 @@ $app->router->apiRoutes('/api/arbitragem', ArbitragemController::class, AuthMidd
 $app->router->apiRoutes('/api/campeonato', CampeonatoController::class, AuthMiddleware::class);
 $app->router->apiRoutes('/api/patrocinador', PatrocinadorController::class, AuthMiddleware::class);
 $app->router->apiRoutes('/api/campeao', CampeaoController::class, AuthMiddleware::class);
+$app->router->apiRoutes('/api/partida', PartidaController::class, AuthMiddleware::class);
 
 $app->router->get('/api/time/estadio/{timeId}', [
     TimeController::class, 'getEstadio',
