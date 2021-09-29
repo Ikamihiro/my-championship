@@ -30,7 +30,8 @@ use App\Controllers\Api\{
     ComissaoTecnicaController,
     MembroController,
     PartidaController,
-    PatrocinadorController
+    PatrocinadorController,
+    PlantelController
 };
 use App\Controllers\HomeController;
 use App\Middlewares\AuthMiddleware;
@@ -61,6 +62,7 @@ $app->router->apiRoutes('/api/campeonato', CampeonatoController::class, AuthMidd
 $app->router->apiRoutes('/api/patrocinador', PatrocinadorController::class, AuthMiddleware::class);
 $app->router->apiRoutes('/api/campeao', CampeaoController::class, AuthMiddleware::class);
 $app->router->apiRoutes('/api/partida', PartidaController::class, AuthMiddleware::class);
+$app->router->apiRoutes('/api/plantel', PlantelController::class, AuthMiddleware::class);
 
 $app->router->get('/api/time/estadio/{timeId}', [
     TimeController::class, 'getEstadio',
@@ -80,6 +82,10 @@ $app->router->get('/api/time/cores/{timeId}', [
 
 $app->router->post('/api/time/cores/{timeId}', [
     TimeController::class, 'saveCores',
+])->addMiddleware(AuthMiddleware::class);
+
+$app->router->get('/api/time/planteis/{timeId}', [
+    TimeController::class, 'getPlanteis',
 ])->addMiddleware(AuthMiddleware::class);
 
 $app->router->post('/api/campeonato/generate_partidas/{id}', [

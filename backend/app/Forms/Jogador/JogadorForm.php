@@ -15,7 +15,11 @@ class JogadorForm extends Form
             'temporada' => [new RequiredRule],
             'data_admissao' => [new RequiredRule],
             'posicao' => [new RequiredRule],
-            'data_nascimento' => [new RequiredRule]
+            'data_nascimento' => [new RequiredRule],
+            'plantel_id' => [
+                new RequiredRule,
+                new ExistsRule('planteis')
+            ],
         ];
 
         return new self($data, $rules);

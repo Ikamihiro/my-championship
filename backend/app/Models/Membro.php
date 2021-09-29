@@ -5,28 +5,25 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Jogador extends Model
+class Membro extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'jogadores';
+    protected $table = 'membros';
 
     protected $fillable = [
         'nome',
-        'temporada',
+        'funcao',
         'data_admissao',
-        'posicao',
-        'data_nascimento',
-        'plantel_id',
+        'comissao_id',
     ];
 
     protected $casts = [
         'data_admissao' => 'datetime',
-        'data_nascimento' => 'datetime',
     ];
 
-    public function plantel()
+    public function comissao()
     {
-        return $this->belongsTo(Plantel::class, 'plantel_id');
+        return $this->belongsTo(ComissaoTecnica::class, 'comissao_id');
     }
 }

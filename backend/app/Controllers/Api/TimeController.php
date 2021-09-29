@@ -5,6 +5,7 @@ namespace App\Controllers\Api;
 use App\Forms\Time\TimeForm;
 use App\Models\Cor;
 use App\Models\Estadio;
+use App\Models\Plantel;
 use App\Models\Presidente;
 use App\Models\Time;
 use App\Models\Uniforme;
@@ -129,5 +130,12 @@ class TimeController extends Controller
         return $response->json($time->load([
             'cores',
         ]));
+    }
+
+    public function getPlanteis(Request $request, Response $response, int $timeId)
+    {
+        $planteis = Plantel::where('time_id', $timeId)->get();
+
+        return $response->json($planteis);
     }
 }
