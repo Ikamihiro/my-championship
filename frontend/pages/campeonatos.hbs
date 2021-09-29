@@ -1,3 +1,5 @@
+<form id="getCampeonatosForm" action="http://localhost:3456/api/campeonato" method="GET" hidden></form>
+
 <div class="row">
   <div class="col-12">
     <div class="card">
@@ -5,9 +7,14 @@
         <div class="d-flex justify-content-between align-items-center">
           <h5 class="card-title mb-0">Campeonatos</h5>
           <div class="d-flex justify-content-end align-items-center">
-            <a href="/" class="btn btn-default text-white">
+            <button
+              type="button"
+              class="btn btn-default text-white"
+              data-bs-toggle="modal"
+              data-bs-target="#modalCampeonato"
+            >
               Novo Campeonato
-            </a>
+            </button>
           </div>
         </div>
       </div>
@@ -19,106 +26,148 @@
         <tr>
           <th width="60%">Campeonato</th>
           <th>Temporada</th>
-          <th width="10%">Ações</th>
+          <th>Tipo</th>
+          <th>Premiação</th>
+          <!--<th width="10%">Ações</th>-->
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <td>Campeonato Nacional</td>
-          <td>2021</td>
-          <td>
-            <button
-              type="button"
-              class="btn btn-default text-white"
-              data-bs-toggle="modal"
-              data-bs-target="#exampleModal"
-            >
-              Detalhes
-            </button>
-          </td>
-        </tr>
-        <tr>
-          <td>Campeonato Estadual</td>
-          <td>2020/2021</td>
-          <td>
-            <button
-              type="button"
-              class="btn btn-default text-white"
-              data-bs-toggle="modal"
-              data-bs-target="#exampleModal"
-            >
-              Detalhes
-            </button>
-          </td>
-        </tr>
-        <tr>
-          <td>Copa dos Campeões</td>
-          <td>2022</td>
-          <td>
-            <button
-              type="button"
-              class="btn btn-default text-white"
-              data-bs-toggle="modal"
-              data-bs-target="#exampleModal"
-            >
-              Detalhes
-            </button>
-          </td>
-        </tr>
+      <tbody id="campeonatosTableBody">
+        
       </tbody>
     </table>
   </div>
 </div>
 
-<div
-  class="modal fade"
-  id="exampleModal"
-  tabindex="-1"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
+<!--modal de edição de Campeonato-->
+<div class="modal fade" id="modalCampeonato" tabindex="-1" aria-labelledby="modalCampeonatoLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">
-          Campeonato ...
+        <h5 class="modal-title" id="exampleModalLabel3">
+          Campeonato
         </h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="formGroupExampleInput">Temporada</label>
-            <input
-              type="text"
-              class="form-control"
-              id="formGroupExampleInput"
-              placeholder="2021/2022"
-            />
+        <form id="formCampeonato" method="POST">
+          <input type="hidden" name="campeonatoId" id="campeonatoId">
+          <div class="mb-3" id="nomeCampeonatoGroup">
+            <label class="form-label">Nome</label>
+            <input type="text" class="form-control" id="nomeCampeonato" />
           </div>
-          <div class="form-group">
-            <label for="formGroupExampleInput2">Premiação</label>
-            <input
-              type="text"
-              class="form-control"
-              id="formGroupExampleInput2"
-              placeholder="R$ 35.000.000"
-            />
+          <div class="mb-3" id="temporadaCampeonatoGroup">
+            <label class="form-label">Temporada</label>
+            <input type="number" class="form-control" id="temporadaCampeonato" />
+          </div>
+          <div class="mb-3" id="tipoCampeonatoGroup">
+            <label class="form-label">Tipo</label>
+            <input type="text" class="form-control" id="tipoCampeonato" />
+          </div>
+          <div class="mb-3">
+            <label class="form-label" id="premiacaoCampeonatoGroup">Premiação</label>
+            <input type="number" class="form-control" id="premiacaoCampeonato" />
+          </div>
+          <div class="d-flex justify-content-end w-100">
+            <button type="button" class="btn btn-secondary rounded" data-bs-dismiss="modal">Fechar</button>
+            <button type="submit" class="btn btn-default text-white ms-2">Salvar</button>
+          </div>
         </form>
-      </div>
-      <div class="modal-footer">
-        <button
-          type="button"
-          class="btn btn-secondary"
-          data-bs-dismiss="modal"
-        >Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
 </div>
+
+
+
+
+
+{{#section "scripts"}}
+<script>
+  function getAllCampeonatos() {
+    $.ajax({
+      url: "http://localhost:3456/api/campeonato",
+      method: "GET",
+      dataType: "JSON",
+      headers: {
+        "Authorization": TokenManager.getToken(),
+      },
+      success: function (data) {
+        fillTable(data);
+      },
+      error: function (err) {
+        console.log(err);
+      },
+    });
+  }
+
+  function fillTable(campeonatos) {
+    let campeonatosRows = '';
+
+    for (let campeonato of campeonatos) {
+      campeonatosRows += `
+        <tr>
+          <td>${campeonato.nome}</td>
+          <td>${campeonato.temporada}</td>
+          <td>${campeonato.tipo}</td>
+          <td>${campeonato.premiacao_valor}</td>
+          <!--<td>
+            <button type="button" class="btn btn-default text-white" data-bs-toggle="modal"
+              data-bs-target="#modalCampeonato">
+              Detalhes
+            </button>
+          </td>-->
+        </tr>
+      `;
+    }
+
+    $("#campeonatosTableBody").html(campeonatosRows);
+  }
+
+  $(document).ready(function () {
+    $("#getCampeonatosForm").on('submit', function (event) {
+      $.ajax({
+        url: "http://localhost:3456/api/campeonato",
+        method: "GET",
+        dataType: "JSON",
+        headers: {
+          "Authorization": TokenManager.getToken(),
+        },
+        success: function (data) {
+          fillTable(data);
+        },
+        error: function (err) {
+          console.log(err);
+        },
+      });
+
+      event.preventDefault();
+    });
+
+    $("#getCampeonatosForm").submit();
+  });
+
+  $('#modalCampeonato').on('show.bs.modal', function (event) {
+      $.ajax({
+        url: "http://localhost:3456/api/campeonato/" + campeonatoId,
+        method: "GET",
+        dataType: "JSON",
+        headers: {
+          "Authorization": TokenManager.getToken(),
+        },
+        success: function (data) {
+          if (data !== null) {
+            $("#nomeCampeonato").val(data.nome);
+            $("#temporadaCampeonato").val(data.temporada);
+            $("#tipoCampeonato").val(data.tipo);
+            $("#premiacaoCampeonato").val(data.premiacao_valor);
+            $("#campeonatoId").val(data.id);
+          }
+        },
+        error: function (err) {
+          console.log(err);
+        },
+      });
+    });
+
+</script>
+{{/section}}
