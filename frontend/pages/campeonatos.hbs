@@ -32,7 +32,7 @@
           <th>Temporada</th>
           <th>Tipo</th>
           <th>Premiação</th>
-          <!--<th width="10%">Ações</th>-->
+          <th width="10%">Ações</th>
         </tr>
       </thead>
       <tbody id="campeonatosTableBody">
@@ -55,25 +55,26 @@
       <div class="modal-body">
         <form id="formCampeonato" method="POST">
           <input type="hidden" name="campeonatoId" id="campeonatoId">
+          <input type="hidden" name="methodCampeonato" id="methodCampeonato" value="POST">
           <div class="mb-3" id="nomeCampeonatoGroup">
             <label class="form-label">Nome</label>
             <input type="text" class="form-control" id="nomeCampeonato" />
           </div>
           <div class="mb-3" id="temporadaCampeonatoGroup">
             <label class="form-label">Temporada</label>
-            <input type="number" class="form-control" id="temporadaCampeonato" />
+            <input type="text" class="form-control" id="temporadaCampeonato" />
           </div>
           <div class="mb-3" id="tipoCampeonatoGroup">
             <label class="form-label">Tipo</label>
             <input type="text" class="form-control" id="tipoCampeonato" />
           </div>
-          <div class="mb-3">
-            <label class="form-label" id="premiacaoCampeonatoGroup">Premiação</label>
+          <div class="mb-3" id="premiacaoCampeonatoGroup">
+            <label class="form-label">Premiação</label>
             <input type="number" class="form-control" id="premiacaoCampeonato" />
           </div>
           <div class="d-flex justify-content-end w-100">
             <button type="button" class="btn btn-secondary rounded" data-bs-dismiss="modal">Fechar</button>
-            <button type="submit" class="btn btn-default text-white ms-2">Salvar</button>
+            <button type="submit" class="btn btn-default text-white ms-2" data-bs-dismiss="modal">Salvar</button>
           </div>
         </form>
       </div>
@@ -110,12 +111,15 @@
           <td>${campeonato.temporada}</td>
           <td>${campeonato.tipo}</td>
           <td>${campeonato.premiacao_valor}</td>
-          <!--<td>
-            <button type="button" class="btn btn-default text-white" data-bs-toggle="modal"
+          <td>
+            <!--<button type="button" class="btn btn-default text-white" data-bs-toggle="modal"
               data-bs-target="#modalCampeonato">
               Detalhes
-            </button>
-          </td>-->
+            </button>-->
+            <a href="/partidas/" class="btn btn-default text-white">
+              Ver Partidas
+            </a>
+          </td>
         </tr>
       `;
     }
@@ -189,7 +193,6 @@
         },
         success: function (data) {
           $(location).attr('href', '/campeonato/');
-          echo("Cadastro realizado")
         },
         error: function (err) {
           if (err.status == 400) {
