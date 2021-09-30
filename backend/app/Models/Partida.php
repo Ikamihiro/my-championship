@@ -36,6 +36,11 @@ class Partida extends Model
 
     public function resultado()
     {
-        return $this->hasOne(Partida::class, 'partida_id');
+        return $this->hasOne(Resultado::class, 'partida_id');
+    }
+
+    public function transmissao()
+    {
+        return $this->hasOne(Transmissao::class, 'partida_id');
     }
 }

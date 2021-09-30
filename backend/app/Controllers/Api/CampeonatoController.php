@@ -8,6 +8,8 @@ use App\Services\CampeonatoService;
 use Lib\Http\Controller;
 use Lib\Http\Request;
 use Lib\Http\Response;
+use Illuminate\Database\Capsule\Manager as Database;
+use Illuminate\Database\DatabaseTransactionsManager;
 
 class CampeonatoController extends Controller
 {
@@ -98,7 +100,20 @@ class CampeonatoController extends Controller
         $campeonatoService = CampeonatoService::mount($campeonato);
         $partidas = $campeonatoService->generatePartidas();
 
-        $campeonato->partidas()->createMany($partidas);
+        Database::beginTransaction();
+
+        try {
+            foreach ($partidas as $data) {
+                $newPartida = $campeonato->partidas()->create($data['partida']);
+                $newPartida->resultado()->create($data['resultado']);
+                $newPartida->transmissao()->create($data['transmissao']);
+            }
+
+            Database::commit();
+        } catch (\Throwable $th) {
+            Database::rollBack();
+            throw $th;
+        }
 
         return $response->json($campeonato->load([
             'times',

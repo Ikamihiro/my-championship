@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Exceptions\CampeonatoAlreadyHasMatchesException;
 use App\Exceptions\CampeonatoWithoutTimesException;
 use App\Models\Campeonato;
+use App\Models\Transmissao;
 use Carbon\Carbon;
 
 class CampeonatoService
@@ -56,11 +57,20 @@ class CampeonatoService
             foreach ($times as $time) {
                 if ($timeCurrent->id == $time->id) continue;
 
+                $transmissao = ['tv', 'radio', 'lives'];
+
                 $partida = [
-                    'mandante' => $timeCurrent->id,
-                    'visitante' => $time->id,
-                    'data_partida' => $data->toDateTimeString(),
-                    'campeonato_id' => $campeonato->id,
+                    'partida' => [
+                        'mandante' => $timeCurrent->id,
+                        'visitante' => $time->id,
+                        'data_partida' => $data->toDateTimeString(),
+                        'campeonato_id' => $campeonato->id,
+                    ],
+                    'resultado' => [
+                        'gols_mandante' => 0,
+                        'gols_visitante' => 0,
+                    ],
+                    'transmissao' => $transmissao[array_rand($transmissao)]
                 ];
 
                 $partidas[] = $partida;
