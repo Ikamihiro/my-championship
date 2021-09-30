@@ -11,12 +11,8 @@
         <div class="d-flex justify-content-between align-items-center">
           <h5 class="card-title mb-0">Campeonatos</h5>
           <div class="d-flex justify-content-end align-items-center">
-            <button
-              type="button"
-              class="btn btn-default text-white"
-              data-bs-toggle="modal"
-              data-bs-target="#modalCampeonato"
-            >
+            <button type="button" class="btn btn-default text-white" data-bs-toggle="modal"
+              data-bs-target="#modalCampeonato">
               Novo Campeonato
             </button>
           </div>
@@ -36,7 +32,7 @@
         </tr>
       </thead>
       <tbody id="campeonatosTableBody">
-        
+
       </tbody>
     </table>
   </div>
@@ -124,29 +120,7 @@
   }
 
   $(document).ready(function () {
-    $("#getCampeonatosForm").on('submit', function (event) {
-      $.ajax({
-        url: "http://localhost:3456/api/campeonato",
-        method: "GET",
-        dataType: "JSON",
-        headers: {
-          "Authorization": TokenManager.getToken(),
-        },
-        success: function (data) {
-          fillTable(data);
-        },
-        error: function (err) {
-          console.log(err);
-        },
-      });
-
-      event.preventDefault();
-    });
-
-    $("#getCampeonatosForm").submit();
-  });
-
-  $('#modalCampeonato').on('show.bs.modal', function (event) {
+    $('#modalCampeonato').on('show.bs.modal', function (event) {
       $.ajax({
         url: "http://localhost:3456/api/campeonato/" + campeonatoId,
         method: "GET",
@@ -168,7 +142,7 @@
         },
       });
     });
-    
+
     $("#formCampeonato").on('submit', function (event) {
       let campeonatoId = $("#campeonatoId").val();
 
@@ -188,8 +162,7 @@
           "Authorization": TokenManager.getToken(),
         },
         success: function (data) {
-          $(location).attr('href', '/campeonato/');
-          echo("Cadastro realizado")
+          $(location).attr('href', '/campeonatos');
         },
         error: function (err) {
           if (err.status == 400) {
@@ -236,5 +209,27 @@
 
       event.preventDefault();
     });
+
+    $("#getCampeonatosForm").on('submit', function (event) {
+      $.ajax({
+        url: "http://localhost:3456/api/campeonato",
+        method: "GET",
+        dataType: "JSON",
+        headers: {
+          "Authorization": TokenManager.getToken(),
+        },
+        success: function (data) {
+          fillTable(data);
+        },
+        error: function (err) {
+          console.log(err);
+        },
+      });
+
+      event.preventDefault();
+    });
+
+    $("#getCampeonatosForm").submit();
+  });
 </script>
 {{/section}}

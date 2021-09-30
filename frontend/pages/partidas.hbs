@@ -1,261 +1,3 @@
-<!--
-  <form id="getTimesForm" action="http://localhost:3456/api/time" method="GET" hidden></form>
-
-<div class="row">
-  <div class="col-12">
-    <div class="card">
-      <div class="card-header">
-        <div class="d-flex justify-content-between align-items-center">
-          <h5 class="card-title mb-0">Partidas</h5>
-          <div class="d-flex justify-content-end align-items-center">
-            <a href="/" class="btn btn-default text-white">
-              Gerar Partidas
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="card-body">
-        <div class="row">
-          <div class="col-12 col-md-6 pb-1 pb-md-0">
-            <input
-              type="text"
-              name="time_search"
-              class="form-control"
-              placeholder="Digite o nome do time..."
-            />
-          </div>
-          <div class="col-12 col-md-6 pt-1 pt-md-0">
-            <select class="form-select" name="campeonato_search">
-              <option selected>Selecione um campeonato</option>
-              <option value="1">Campeonato A</option>
-              <option value="2">Campeonato B</option>
-              <option value="3">Copa A</option>
-            </select>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-12 pt-2 overflow-auto">
-    <table class="table table-bordered table-hover table-fixed mb-1">
-      <thead>
-        <tr>
-          <th>Mandante</th>
-          <th>Visitante</th>
-          <th>Horário</th>
-          <th>Estádio</th>
-          <th width="10%">Ações</th>
-        </tr>
-      </thead>
-      <tbody id="partidasTableBody">
-        
-        <!-- <tr>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-          <td>@mdo</td>
-          <td>
-            <button
-              type="button"
-              class="btn btn-default text-white"
-              data-bs-toggle="modal"
-              data-bs-target="#exampleModal"
-            >
-              Detalhes
-            </button>
-          </td>
-        </tr>
-        <tr>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-          <td>@mdo</td>
-          <td>
-            <button
-              type="button"
-              class="btn btn-default text-white"
-              data-bs-toggle="modal"
-              data-bs-target="#exampleModal"
-            >
-              Detalhes
-            </button>
-          </td>
-        </tr>
-        <tr>
-          <td>@twitter</td>
-          <td>@twitter</td>
-          <td>@twitter</td>
-          <td>@mdo</td>
-          <td>
-            <button
-              type="button"
-              class="btn btn-default text-white"
-              data-bs-toggle="modal"
-              data-bs-target="#exampleModal"
-            >
-              Detalhes
-            </button>
-          </td>
-        </tr> --><!--
-      </tbody> 
-    
-    
-    </table>
-  </div>
-</div>
-
-{{#section "scripts"}}
-<script>
-  function getAllPartidas() {
-    $.ajax({
-      url: "http://localhost:3456/api/partida3",
-      method: "GET",
-      dataType: "JSON",
-      headers: {
-        "Authorization": TokenManager.getToken(),
-    },
-    success: function (data) {
-      fillTable(data);
-    },
-    error: function (err) {
-      console.log(err);
-    },
-    });
-  }
-
-  function fillTable(partidas) {
-    let partidasRows = '';
-
-    for (let partida of partidas) {
-      //let mandantes = partida.times.map(time => time.nome).join(", ");
-      //let visitantes = partida.times.map(time => time.nome).join(", ");
-      //let campeonatos = partida.campeonatos.map(campeonato => campeonato.nome).join(", ");
-
-      partidasRows += `
-        <tr>
-          <td>${partida.mandante_id}</td>
-          <td>${partida.visitante_id}</td>
-          <td>${partida.data_partida}</td>
-          <td>${partida.campeonato_id}</td>
-          <td>
-            <a href="/edicao/${partida.id}" class="btn btn-default text-white">
-              Detalhes
-            </a>
-          </td>
-        </tr>
-      `;
-    }
-
-    $("#partidasTableBody").html(partidasRows);
-  }
-
-  $(document).ready(function ()  {
-    $("#getPartidasForm").on('submit', function (event) {
-      $.ajax({
-        url: "http://localhost:3456/api/partida",
-        method: "GET",
-        dataType: "JSON",
-        headers: {
-          "Authorization": TokenManager.getToken(),
-        },
-        success: function (data) {
-          fillTable(data);
-        },
-        error: function (err) {
-          console.log(err);
-        },
-      });
-
-      event.preventDefault();
-    });
-      
-      $("#getPartidasForm").submit();
-  });
-</script>
-{{/section}}
-<!--
-<div
-  class="modal fade"
-  id="exampleModal"
-  tabindex="-1"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">
-          Partida: TimeX x TimeY - Estadio 00:00h
-        </h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="formGroupExampleInput">Mandante</label>
-            <input
-              type="text"
-              class="form-control"
-              id="formGroupExampleInput"
-              placeholder="TimeX"
-            />
-          </div>
-          <div class="form-group">
-            <label for="formGroupExampleInput2">Visitante</label>
-            <input
-              type="text"
-              class="form-control"
-              id="formGroupExampleInput2"
-              placeholder="TimeY"
-            />
-          </div>
-          <div class="form-group">
-            <label for="formGroupExampleInput">Transmissão</label>
-            <input
-              type="text"
-              class="form-control"
-              id="formGroupExampleInput"
-              placeholder="# TV - Cleber Machado (Narrador)"
-            />
-          </div>
-          <div class="form-group">
-            <label for="formGroupExampleInput2">Resultado</label>
-            <input
-              type="text"
-              class="form-control"
-              id="formGroupExampleInput2"
-              placeholder="TimeX 0 x 0 Timey"
-            />
-          </div>
-          <div class="form-group">
-            <label for="formGroupExampleInput2">Arbitragem</label>
-            <input
-              type="text"
-              class="form-control"
-              id="formGroupExampleInput2"
-              placeholder="# Fulano - Ciclano - Beltrano"
-            />
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button
-          type="button"
-          class="btn btn-secondary"
-          data-bs-dismiss="modal"
-        >Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
--->
-
 <form id="getPartidasForm" action="http://localhost:3456/api/partida" method="GET" hidden></form>
 
 <div class="row">
@@ -293,6 +35,8 @@
       </div>
     </div>
   </div>
+
+  <!-- Table Partidas -->
   <div class="col-12 pt-2 overflow-auto">
     <table class="table table-bordered table-hover table-fixed mb-1">
       <thead>
@@ -300,7 +44,10 @@
           <th>Mandante</th>
           <th>Visitante</th>
           <th>Horário</th>
-          <th>Estádio</th>
+          <th>Campeonato</th>
+          <th>Gols Mandante</th>
+          <th>Gols Visitante</th>
+          <th>Transmissão</th>
           <th width="10%">Ações</th>
         </tr>
       </thead>
@@ -312,9 +59,10 @@
   </div>
 </div>
 
+<!-- Modal Partidas -->
 <div
   class="modal fade"
-  id="exampleModal"
+  id="modalPartida"
   tabindex="-1"
   aria-labelledby="exampleModalLabel"
   aria-hidden="true"
@@ -323,7 +71,6 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">
-          Partida: TimeX x TimeY - Estadio 00:00h
         </h5>
         <button
           type="button"
@@ -334,59 +81,51 @@
       </div>
       <div class="modal-body">
         <form>
+          <input type="hidden" name="partidaId" id="partidaId">
+          <input type="hidden" name="methodPartida" id="methodPartida" value="POST">
           <div class="form-group">
             <label for="mandanteTime">Mandante</label>
-            <input
+            <input readonly 
               type="text"
               class="form-control"
               id="mandanteTime"
             />
           </div>
           <div class="form-group">
-            <label for="formGroupExampleInput2">Visitante</label>
-            <input
+            <label for="visitanteTime">Visitante</label>
+            <input readonly
               type="text"
               class="form-control"
-              id="formGroupExampleInput2"
-              placeholder="TimeY"
+              id="visitanteTime"
             />
           </div>
           <div class="form-group">
-            <label for="formGroupExampleInput">Transmissão</label>
-            <input
+            <label for="dataPartida">Data da partida</label>
+            <input readonly
               type="text"
               class="form-control"
-              id="formGroupExampleInput"
-              placeholder="# TV - Cleber Machado (Narrador)"
+              id="dataPartida"
             />
           </div>
           <div class="form-group">
-            <label for="formGroupExampleInput2">Resultado</label>
-            <input
+            <label for="campeonatoPartida">Campeonato</label>
+            <input readonly
               type="text"
               class="form-control"
-              id="formGroupExampleInput2"
-              placeholder="TimeX 0 x 0 Timey"
+              id="campeonatoPartida"
             />
           </div>
-          <div class="form-group">
-            <label for="formGroupExampleInput2">Arbitragem</label>
-            <input
+         <div class="form-group">
+            <label for="transmissaoPartida">Transmissão</label>
+            <input readonly
               type="text"
               class="form-control"
-              id="formGroupExampleInput2"
-              placeholder="# Fulano - Ciclano - Beltrano"
+              id="transmissaoPartida"
             />
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button
-          type="button"
-          class="btn btn-secondary"
-          data-bs-dismiss="modal"
-        >Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
@@ -416,22 +155,27 @@
 
     for (let partida of partidas) {
       console.log(partida);
-      //0let mandantes = partida.times.map(time => time.nome).join(", ");
-      //let visitantes = partida.times.map(time => time.nome).join(", ");
-      //let campeonatos = partida.campeonatos.map(campeonato => campeonato.nome).join(", ");
-
       partidasRows += `
         <tr>
           <td>${partida.mandante.nome}</td>
           <td>${partida.visitante.nome}</td>
           <td>${partida.data_partida}</td>
-          <td>${partida.campeonato_id}</td>
+          <td>${partida.campeonato.nome}</td>
+          <td>${partida.resultado.gols_mandante}</td>
+          <td>${partida.resultado.gols_visitante}</td>
+          <td>${partida.transmissao.tipo}</td>
           <td>
             <button
               type="button"
               class="btn btn-default text-white"
               data-bs-toggle="modal"
-              data-bs-target="#exampleModal"
+              data-bs-target="#modalPartida"
+              data-method="PUT"
+              data-partida-mandante-nome="${partida.mandante.nome}"
+              data-partida-visitante-nome="${partida.visitante.nome}"
+              data-partida-data="${partida.data_partida}"
+              data-partida-campeonato="${partida.campeonato.nome}"
+              data-partida-transmissao="${partida.transmissao.tipo}"
             >
               Detalhes
             </button>
@@ -444,6 +188,7 @@
   }
 
   $(document).ready(function () {
+
     $("#getPartidasForm").on('submit', function (event) {
       $.ajax({
         url: "http://localhost:3456/api/partida",
@@ -464,6 +209,16 @@
     });
 
     $("#getPartidasForm").submit();
+
+    $('#modalPartida').on('show.bs.modal', function (event) {
+      $("#mandanteTime").val($(event.relatedTarget).data('partida-mandante-nome'));
+      $("#visitanteTime").val($(event.relatedTarget).data('partida-visitante-nome'));
+      $("#dataPartida").val($(event.relatedTarget).data('partida-data'));
+      $("#campeonatoPartida").val($(event.relatedTarget).data('partida-campeonato'));
+      $("#transmissaoPartida").val($(event.relatedTarget).data('partida-transmissao'));
+
+      
+    });
   });
 </script>
 {{/section}}
