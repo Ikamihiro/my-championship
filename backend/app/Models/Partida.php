@@ -43,4 +43,9 @@ class Partida extends Model
     {
         return $this->hasOne(Transmissao::class, 'partida_id');
     }
+
+    public function arbitragem()
+    {
+        return $this->hasOne(Arbitragem::class, 'partida_id');
+    }
 }

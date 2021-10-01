@@ -11,7 +11,7 @@ class PartidaController extends Controller
 {
     public function index(Request $request, Response $response)
     {
-        return $response->json(Partida::with(['mandante', 'visitante'])->get());
+        return $response->json(Partida::with(['mandante', 'visitante', 'campeonato', 'resultado', 'transmissao', 'arbitragem'])->get());
     }
 
 
