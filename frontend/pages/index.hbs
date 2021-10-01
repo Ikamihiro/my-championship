@@ -13,11 +13,16 @@
             <form id="formSearch" class="d-flex flex-column flex-lg-row align-items-stretch align-items-lg-center mb-0">
               <input type="text" name="time_search" class="form-control mb-2 mb-lg-0"
                 placeholder="Digite o nome do time..." />
-              <button type="button" class="btn btn-default text-white mb-2 mb-lg-0 ms-0 ms-lg-2">
+              <button type="button" class="btn btn-outline-success mb-2 mb-lg-0 ms-0 ms-lg-2">
                 Buscar
               </button>
-              <button type="button" class="btn btn-default text-white mb-2 mb-lg-0 ms-0 ms-lg-2">
-                Novo time
+              <button type="button" 
+              class="btn btn-default text-white mb-2 mb-lg-0 ms-0 ms-lg-2"
+              id="btnNewTime"
+              data-method="POST"
+              data-bs-toggle="modal"
+              data-bs-target="#modalTime">
+                Cadastrar
               </button>
             </form>
           </div>
@@ -42,8 +47,57 @@
   </div>
 </div>
 
+<!--modal de time-->
+<div class="modal fade" id="modalTime" tabindex="-1" aria-labelledby="modalTimeLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel6">
+          Time
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="formTime" method="POST">
+          <input type="hidden" name="timeId" id="timeId">
+          <input type="hidden" name="methodTime" id="methodTime" value="POST">
+          <div class="mb-3" id="nomeTimeGroup">
+            <label class="form-label">Nome</label>
+            <input type="text" class="form-control" id="nomeTime" />
+          </div>
+          <div class="mb-3" id="ano_fundacaoTimeGroup">
+            <label class="form-label">Ano de fundação</label>
+            <input type="number" class="form-control" id="ano_fundacaoTime" />
+          </div>
+          <div class="mb-3" id="cidadeTimeGroup">
+            <label class="form-label">Cidade</label>
+            <select name="cidades" id="cidadesSelect" class="form-select select-2">
+              <option selected>Selecione uma cidade</option>
+            </select>
+          </div>
+          <div class="d-flex justify-content-end w-100">
+            <button type="button" class="btn btn-secondary rounded" data-bs-dismiss="modal">Fechar</button>
+            <button type="submit" class="btn btn-default text-white ms-2" data-bs-dismiss="modal">Salvar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 {{#section "scripts"}}
 <script>
+  const loadCidadesInSelect = (cidades) => {
+    $("#cidadesSelect").html('');
+    $("#cidadesSelect").append(new Option("Selecione uma cidade", null, false, false));
+
+    for (let cidade of cidades) {
+      let cidadeTime = new Option(cidade.nome, cidade.id, false, false);
+      $("#cidadesSelect").append(cidadeTime);
+    }
+  };
+
   function getAllTimes() {
     $.ajax({
       url: "http://localhost:3456/api/time",
@@ -106,6 +160,77 @@
       event.preventDefault();
     });
 
+ 
+
+  $('#modalTime').on('show.bs.modal', function (event) {
+      $.ajax({
+        url: "http://localhost:3456/api/cidade",
+        method: "GET",
+        dataType: "JSON",
+        headers: {
+          "Authorization": TokenManager.getToken(),
+        },
+        success: function (data) {
+          if (data !== null) {
+            loadCidadesInSelect(data);
+          }
+        },
+        error: function (err) {
+          console.log(err);
+        },
+      });
+    });
+
+     $("#formTime").on('submit', function (event) {
+      let timeId = $("#timeId").val();
+      let methodTime = $("#methodTime").val();
+
+      let time = {
+        nome: $("#nomeTime").val(),
+        ano_fundacao: $("#ano_fundacaoTime").val(),
+        cidade_id: $("#cidadesSelect").val()
+      }
+
+      
+
+      $.ajax({
+        type: methodTime,
+        url: methodTime === "POST" ? "http://localhost:3456/api/time" : "http://localhost:3456/api/time/" + timeId,
+        data: JSON.stringify(time),
+        dataType: "json",
+        headers: {
+          "Authorization": TokenManager.getToken(),
+        },
+        success: function (data) {
+          $(location).attr('href', '/time');
+        },
+        error: function (err) {
+          if (err.status == 400) {
+            let errorMessages = err.responseJSON.errors;
+
+            if (errorMessages.nome.length > 0) {
+              $("#nomeTime").addClass("is-invalid");
+              $("#ano_fundacaoTime").addClass("is-invalid");
+              $("#cidadesSelect").addClass("is-invalid");
+              for (let error of errorMessages.nome) {
+                $("#nomeTimeGroup").append(
+                  '<div class="invalid-feedback">' + error + '</div>'
+                );
+                $("#ano_fundacaoTimeGroup").append(
+                  '<div class="invalid-feedback">' + error + '</div>'
+                );
+                $("#cidadeTimeGroup").append(
+                  '<div class="invalid-feedback">' + error + '</div>'
+                );
+              }
+            }
+            
+          }
+        },
+      });
+
+      event.preventDefault();
+    });
     $("#getTimesForm").submit();
   });
 </script>
