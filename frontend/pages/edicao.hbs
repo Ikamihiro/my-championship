@@ -708,14 +708,7 @@
           if (err.status == 400) {
             let errorMessages = err.responseJSON.errors;
 
-            if (errorMessages.temporada.length > 0) {
-              $("#temporadaPlantel").addClass("is-invalid");
-              for (let error of errorMessages.temporada) {
-                $("#temporadaPlantelGroup").append(
-                  '<div class="invalid-feedback">' + error + '</div>'
-                );
-              }
-            }
+           
           }
         },
       });
